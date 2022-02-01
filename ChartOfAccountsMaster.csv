@@ -1,0 +1,244 @@
+﻿Object_Code,Top_Name,Sub_Name
+300,Employee Salaries and Employee Benefits,Employee Salaries and Employee Benefits
+310,Certificated Salaries,Certificated Salaries
+311,Certificated Salaries,Certificated Superintendent
+312,Certificated Salaries,Certificated Associate/Assistant Superintendent
+313,Certificated Salaries,Certificated Principal/Assistant Principal
+314,Certificated Salaries,Certificated Director/Coordinator/Manager
+315,Certificated Salaries,Certificated Teacher
+316,Certificated Salaries,Certificated Extra Duty Pay
+317,Certificated Salaries,Certificated Substitutes
+318,Certificated Salaries,Certificated Specialists
+320,Non-Certificated Salaries,Non-Certificated Salaries
+321,Non-Certificated Salaries,Non-Certificated Director/Coordinator/Manager
+322,Non-Certificated Salaries,Non-Certificated Specialists
+323,Non-Certificated Salaries,Non-Certificated Aides
+324,Non-Certificated Salaries,Non-Certificated Support Staff
+325,Non-Certificated Salaries,Non-Certificated Maintenance/Custodial
+326,Non-Certificated Salaries,Non-Certificated Food Service Staff
+327,Non-Certificated Salaries,Non-Certificated Bus Drivers
+328,Non-Certificated Salaries,Non-Certificated Construction Labor
+329,Non-Certificated Salaries,Non-Certificated Substitute/Temporaries
+330,Non-Certificated Salaries,Non-Certificated School Bus Aides and Monitors
+350,Total Employee Benefits,Total Employee Benefits
+360,Employee Benefits,Employee Benefits
+361,Employee Benefits,Insurance - Life and Health
+362,Employee Benefits,Unemployment Insurance
+363,Employee Benefits,Workers' Compensation
+364,Employee Benefits,FICA Contribution
+365,Employee Benefits,Retirement Contribution - TRS
+366,Employee Benefits,Retirement Contribution - PERS
+367,Employee Benefits,TRS On-Behalf Payments
+368,Employee Benefits,PERS On-Behalf Payments
+369,Employee Benefits,Other Employee Benefits
+380,Housing Allowance/Subsidy,Housing Allowance/Subsidy
+390,Transportation Allowance,Transportation Allowance
+400,"Materials, Supplies, Services & Other","Materials, Supplies, Services & Other"
+410,Professional and Technical Services,Professional and Technical Services
+411,Professional and Technical Services,Instructional Services
+412,Professional and Technical Services,Auditing and Accounting Services
+413,Professional and Technical Services,Management Services
+414,Professional and Technical Services,Legal Services
+415,Professional and Technical Services,Medical Services
+416,Professional and Technical Services,Engineering and Architectural Services
+417,Professional and Technical Services,Data Processing and Coding Services
+418,Professional and Technical Services,Other Professional Services
+419,Chief Administrator Contract Services,Chief Administrator Contract Services
+420,Staff Travel,Staff Travel
+421,Staff Travel,Staff Transportation
+422,Staff Travel,Staff Per Diem
+425,Student Travel,Student Travel
+426,Student Travel,Student Transportation
+427,Student Travel,Student Per Diem
+430,Utility Services,Utility Services
+431,Utility Services,Water and Sewage
+432,Utility Services,Garbage
+433,Utility Services,Communications
+434,Utility Services,Other Utility Services
+435,Energy,Energy
+436,Energy,Electricity
+437,Energy,Natural Or Bottled Gas
+438,Energy,"Gasoline, Diesel or Heating Oil"
+439,Energy,Other Energy
+440,Other Purchased Services,Other Purchased Services
+441,Other Purchased Services,Rentals
+442,Other Purchased Services,Site and Building Repair and Maintenance Services
+443,Other Purchased Services,Equipment Repair and Maintenance Services
+444,Other Purchased Services,Technology-Related Repairs and Maintenance
+445,Insurance and Bond Premiums,Insurance and Bond Premiums
+446,Insurance and Bond Premiums,Property Insurance
+447,Insurance and Bond Premiums,Liability Insurance
+448,Insurance and Bond Premiums,Fidelity Bond Premiums
+449,Insurance and Bond Premiums,Student Accident Insurance
+450,"Supplies, Materials and Media","Supplies, Materials and Media"
+451,"Supplies, Materials and Media",Teaching Supplies
+452,"Supplies, Materials and Media",Maintenance and Construction Supplies and Materials
+453,"Supplies, Materials and Media",Janitorial Supplies
+454,"Supplies, Materials and Media",Office Supplies
+455,"Supplies, Materials and Media","School Bus Maintenance, Supplies, & Materials"
+456,"Supplies, Materials and Media",Warehouse Inventory Adjustment
+457,"Supplies, Materials and Media",Small Tools and Equipment
+458,"Supplies, Materials and Media","Vehicle Gasoline, Diesel, and Oil"
+459,"Supplies, Materials and Media",Food
+460,"Supplies, Materials and Media",Milk
+471,"Supplies, Materials and Media",Textbooks
+472,"Supplies, Materials and Media",Library Books
+473,"Supplies, Materials and Media",Periodicals
+475,"Supplies, Materials and Media",Supplies-Technology Related
+479,"Supplies, Materials and Media","Other Supplies, Materials, and Media"
+480,Tuition-Students and Stipends,Tuition-Students and Stipends
+481,Tuition-Students and Stipends,Tuiton-Students
+485,Tuition-Students and Stipends,Stipends
+487,Student Transportation - In-Lieu-of Agreements,Student Transportation - In-Lieu-of Agreements
+490,Other Expenses,Other Expenses
+491,Other Expenses,Dues and Fees
+492,Other Expenses,Judgments Against the School District
+493,Other Expenses,Interest
+494,Other Expenses,Loss of Investments
+495,Indirect Costs,Indirect Costs
+500,Indirect Costs,Capital Outlay
+510,Equipment,Equipment
+512,Equipment,Technology-Related Hardware
+513,Equipment,Technology Software
+515,School Transportation Vehicles and Equipment,School Transportation Vehicles and Equipment
+520,Land,Land
+523,Building and Improvements Purchased,Building and Improvements Purchased
+525,Depreciation,Depreciation
+527,Depreciation,Contingency
+528,Depreciation,Overhead
+532,Interest on Long-Term Debt,Interest on Long-Term Debt
+533,Redemption of Principal on Long-Term Debt,Redemption of Principal on Long-Term Debt
+540,Other Capital Outlay Expenses,Other Capital Outlay Expenses
+550,Transfer to Other Funds,Transfer to Other Funds
+551,Transfer to Other Funds,Transfer to General Fund
+552,Transfer to Other Funds,Transfer to Special Revenue Fund
+553,Transfer to Other Funds,Transfer to Debt Service Fund
+554,Transfer to Other Funds,Transfer to Capital Projects Fund
+555,Transfer to Other Funds,Transfer to Enterprise Fund
+556,Transfer to Other Funds,Transfer to Internal Service Fund
+557,Transfer to Other Funds,Transfer to Trust Fund
+560,Other Noncurrent Debits,Other Noncurrent Debits
+561,Other Noncurrent Debits,Agency Fund Outflow
+562,Other Noncurrent Debits,Transfer to Other Governmental Units
+600,Assets,Assets
+610,Cash,Cash
+611,Cash,Cash on Deposit in Bank/With Treasurer
+612,Cash,Petty Cash
+613,Cash,Cash on Hand
+614,Cash,Cash Change Funds
+615,Cash,Certificates of Deposit (CD'S)
+616,Cash,Cash with Fiscal Agent
+620,Investments,Investments
+621,Investments,Repurchase Agreements
+622,Investments,Commercial Paper
+623,Investments,Other Investments
+630,Accounts Receivable,Accounts Receivable
+631,Accounts Receivable,Tuition Receivable
+633,Accounts Receivable,Loans Receivable
+639,Accounts Receivable,Other Receivables
+640,Due From other Funds,Due From other Funds
+641,Due From Other Funds,Interfund Receivables
+650,Inventories,Inventories
+651,Inventories,Inventories for Resale
+652,Inventories,Food Inventory
+653,Inventories,Fuel Inventory
+654,Inventories,Supplies Inventory
+660,Prepaid Expenses,Prepaid Expenses
+670,Other Assets,Other Assets
+671,Other Assets,Equity in Insurance Pool
+680,"Property, Plant and Equipment","Property, Plant and Equipment"
+681,"Property, Plant and Equipment",Land
+682,"Property, Plant and Equipment",Buildings
+683,"Property, Plant and Equipment",Improvements Other Than Buildings
+684,"Property, Plant and Equipment",Equipment
+685,"Property, Plant and Equipment",Construction-In-Progress
+686,"Property, Plant and Equipment",Accumulated Depreciation
+690,"Property, Plant and Equipment",Other Debits
+691,Amount Available In Debt Service Fund,Amount Available In Debt Service Fund
+692,Amount to be Provided for Retirement of Long-Term Debt,Amount to be Provided for Retirement of Long-Term Debt
+693,Intangible Assets,Intangible Assets
+695,Deferred Outflows of Resources,Deferred Outflows of Resources
+700,Liabilities,Liabilities
+710,Accounts Payable,Accounts Payable
+712,Accounts Payable,Judgments Payable
+713,Accounts Payable,Contracts Payable
+714,Accounts Payable,Deposits Payable
+720,Payroll Accruals and Liabilities,Payroll Accruals and Liabilities
+721,Payroll Accruals and Liabilities,PERS Payable
+722,Payroll Accruals and Liabilities,TRS Payable
+723,Payroll Accruals and Liabilities,Unemployment Compensation Payable
+724,Payroll Accruals and Liabilities,Supplemental Benefits System Payable
+725,Payroll Accruals and Liabilities,Workers' Compensation Payable
+726,Payroll Accruals and Liabilities,Federal Withholding Payable
+727,Payroll Accruals and Liabilities,Health and Life Insurance Payable
+728,Payroll Accruals and Liabilities,State Withholding Payable
+729,Payroll Accruals and Liabilities,FICA Contribution Payable
+730,Payroll Accruals and Liabilities,Compensated Absences - Current
+731,Payroll Accruals and Liabilities,Other Payroll Liabilities
+732,Payroll Accruals and Liabilities,Other Payroll Liabilities
+733,Payroll Accruals and Liabilities,Other Payroll Liabilities
+734,Payroll Accruals and Liabilities,Other Payroll Liabilities
+735,Payroll Accruals and Liabilities,Other Payroll Liabilities
+736,Payroll Accruals and Liabilities,Other Payroll Liabilities
+737,Payroll Accruals and Liabilities,Other Payroll Liabilities
+738,Payroll Accruals and Liabilities,Other Payroll Liabilities
+739,Payroll Accruals and Liabilities,Other Payroll Liabilities
+740,Leases and Contracts Payable,Leases and Contracts Payable
+741,Leases and Contracts Payable,Lease-Purchase Payable - Current
+742,Leases and Contracts Payable,Construction Contracts Payable
+743,Leases and Contracts Payable,Contruction Contracts Payable - Retained Percentage
+750,Loans Payable - Current,Loans Payable - Current
+760,Unearned Revenue,Unearned Revenue
+770,Due to Other Funds,Due to Other Funds
+780,Due to Others - External Groups and Agencies,Due to Others - External Groups and Agencies
+790,Long-Term Liabilities,Long-Term Liabilities
+791,Long-Term Liabilities,Lease-Purchase Payable - Long-Term
+792,Long-Term Liabilities,Loans Payable - Current
+793,Long-Term Liabilities,Compensated Absences
+795,Deferred Inflows of Resources,Deferred Inflows of Resources
+800,Fund Balance,Fund Balance
+810,Nonspendable Fund Balance,Nonspendable Fund Balance
+811,Nonspendable Fund Balance,Nonspendable Fund Balance
+812,Nonspendable Fund Balance,Nonspendable Fund Balance
+813,Nonspendable Fund Balance,Nonspendable Fund Balance
+814,Nonspendable Fund Balance,Nonspendable Fund Balance
+815,Nonspendable Fund Balance,Nonspendable Fund Balance
+816,Nonspendable Fund Balance,Nonspendable Fund Balance
+817,Nonspendable Fund Balance,Nonspendable Fund Balance
+818,Nonspendable Fund Balance,Nonspendable Fund Balance
+819,Restricted Fund Balance,Restricted Fund Balance
+820,Committed Fund Balance,Committed Fund Balance
+821,Committed Fund Balance,Committed For ____ (District Committed)
+822,Committed Fund Balance,Committed For ____ (District Committed)
+823,Committed Fund Balance,Committed For ____ (District Committed)
+824,Committed Fund Balance,Committed For ____ (District Committed)
+825,Committed Fund Balance,Committed For ____ (District Committed)
+826,Committed Fund Balance,Committed For ____ (District Committed)
+827,Committed Fund Balance,Committed For ____ (District Committed)
+828,Committed Fund Balance,Committed For ____ (District Committed)
+829,Committed Fund Balance,Committed For ____ (District Committed)
+830,Assigned Fund Balance,Assigned Fund Balance
+831,Assigned Fund Balance,Assigned For ______ (District Assigned)
+832,Assigned Fund Balance,Assigned For ______ (District Assigned)
+833,Assigned Fund Balance,Assigned For ______ (District Assigned)
+834,Assigned Fund Balance,Assigned For ______ (District Assigned)
+835,Assigned Fund Balance,Assigned For ______ (District Assigned)
+836,Assigned Fund Balance,Assigned For ______ (District Assigned)
+837,Assigned Fund Balance,Assigned For ______ (District Assigned)
+838,Assigned Fund Balance,Assigned For ______ (District Assigned)
+839,Assigned Fund Balance,Assigned For ______ (District Assigned)
+840,Assigned Fund Balance,Assigned For ______ (District Assigned)
+841,Assigned Fund Balance,Assigned For ______ (District Assigned)
+842,Assigned Fund Balance,Assigned For ______ (District Assigned)
+843,Assigned Fund Balance,Assigned For ______ (District Assigned)
+844,Assigned Fund Balance,Assigned For ______ (District Assigned)
+845,Unassigned Fund Balance,Unassigned Fund Balance
+850,Net Investments in Capital Assets,Net Investments in Capital Assets
+860,Restricted Net Position,Restricted Net Position
+870,Unrestricted Net Position,Unrestricted Net Position
+900,Unrestricted Net Position,Budgetary and Control Accounts
+910,Unrestricted Net Position,Estimated Revenues (Control)
+911,Unrestricted Net Position,Revenues (Control)
+920,Unrestricted Net Position,Appropriations (Control)
+921,Unrestricted Net Position,Expenditures (Control)
+930,Unrestricted Net Position,Encumbrances (Control)
