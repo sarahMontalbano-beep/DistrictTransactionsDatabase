@@ -1,41 +1,17 @@
-<div *ngIf="transactions[0]">
+<div *ngIf="transactions">
     <table>
         <thead>
             <tr>
-                <th>District Name</th>
-                <th>Fiscal Year</th>
-                <th>Journal Date</th>
-                <th>Fund</th>
-                <th>Reference</th>
-                <th>Function Code</th>
-                <th>Batch No</th>
-                <th>Credit Amount</th>
-                <th>Throwaway Code</th>
-                <th>Program Code</th>
-                <th>School Code</th>
-                <th>Transaction</th>
-                <th>Debit Amount</th>
-                <th>Object Code</th>
-                <th>Object Suffix</th>
+                <span *ngFor="let label of labels">
+                    <th>{{ label}}</th>
+                </span>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let transaction of transactions">
-                <td>{{ transaction.District_Name }}</td>
-                <td>{{ transaction.FiscalYear }}</td>
-                <td>{{ transaction.JournalDate }}</td>
-                <td>{{ transaction.Fund }}</td>
-                <td>{{ transaction.Reference }}</td>
-                <td>{{ transaction.FunctionCode }}</td>
-                <td>{{ transaction.BatchNo }}</td>
-                <td>{{ transaction.CreditAmount }}</td>
-                <td>{{ transaction.ThrowawayCode }}</td>
-                <td>{{ transaction.ProgramCode }}</td>
-                <td>{{ transaction.SchoolCode }}</td>
-                <td>{{ transaction.Transaction }}</td>
-                <td>{{ transaction.DebitAmount }}</td>
-                <td>{{ transaction.Object_Code }}</td>
-                <td>{{ transaction.Object_Suffix }}</td>
+                <span *ngFor="let prop of transaction">
+                    <td>{{ prop }}</td>
+                </span>
             </tr>
         </tbody>
     </table>
