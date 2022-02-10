@@ -1,40 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Transaction } from 'src/shared/transaction';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { auth, driver, Driver, ServerInfo, Session } from 'neo4j-driver';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Neo4jService {
-// private neo4jUrl = 'http://localhost:7474/db/data/transaction/commit';
+  //Neo4j Aura
+  // private neo4jUrl: string = 'neo4j+s://e5f3f164.databases.neo4j.io:7687';
+  //Local
   private neo4jUrl: string = 'neo4j+s://e5f3f164.databases.neo4j.io:7687';
+  
   static driver: Driver;
 
 
   constructor() {}
 
-  // constructor(private http: HttpClient) { }
-
-  // getTransactions(): Observable<any> {
-  //   const headers = {'content-type': 'application/json', 'Authorization': 'Basic Ynlyb246cGFzc3dvcmQ='}
-  //   const body = {
-  //     "statements":[
-  //       { 
-  //         "statement": "MATCH (n:FullTransaction) WHERE n.Fund = $fund RETURN n",
-  //        "parameters": {
-  //           "fund":"209"
-  //        }
-  //       }
-  //     ]
-  //   }
-  //   var r = this.http.post<any>(this.neo4jUrl, body, {'headers':headers});
-  //   return r;
-  // }
-
   private static createDriver(): Driver {
     return driver(
-      'neo4j+s://e5f3f164.databases.neo4j.io:7687',
+      'neo4j://localhost:7687',
         auth.basic('byron', 'newpassword'),
         {
             disableLosslessIntegers: true,

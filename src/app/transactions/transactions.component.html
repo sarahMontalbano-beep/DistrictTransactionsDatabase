@@ -1,18 +1,32 @@
-<div *ngIf="transactions">
+<!-- <div *ngIf="transactions">
     <table>
         <thead>
             <tr>
-                <span *ngFor="let label of labels">
-                    <th>{{ label}}</th>
-                </span>
+                <th *ngFor="let label of labels">{{ label}}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let transaction of transactions">
-                <span *ngFor="let prop of transaction">
-                    <td>{{ prop }}</td>
-                </span>
+                <td *ngFor="let prop of transaction">{{ prop }}</td>
             </tr>
         </tbody>
+    </table>
+</div> -->
+
+<div *ngIf="transactions">
+    <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+        <!-- <ng-container matColumnDef="District_Name" >
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.District_Name}} </td>
+        </ng-container> -->
+        <ng-container *ngFor="let lCol of labels" matColumnDef={{lCol}}>
+            <th mat-header-cell *matHeaderCellDef> {{lCol}} </th>
+        </ng-container>
+        <ng-container *ngFor="let dCol of displayedColumns" matColumnDef={{dCol}}>
+            <td mat-cell *matCellDef="let element"> {{element[dCol]}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="labels"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
