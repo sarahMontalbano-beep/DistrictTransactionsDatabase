@@ -1,0 +1,17 @@
+<mat-form-field class="District" appearance="fill">
+    <mat-label>School District</mat-label>
+    <mat-select [(value)]="currentDistrict" (selectionChange)="districtUpdate()">
+        <mat-option *ngFor="let sd of schoolDistricts" [value]="sd">{{sd}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field class="Year" appearance="fill">
+    <mat-label>Fiscal Year</mat-label>
+    <mat-select [(value)]="currentYear">
+        <mat-option *ngFor="let fy of fiscalYears" [value]="fy">{{fy}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="onUpdateButton()">Update</button>
+
+<app-transactions-table [transactions]="transactions" [labels]="labels" [dColumns]="dColumns" [displayedColumns]="displayedColumns"></app-transactions-table>
