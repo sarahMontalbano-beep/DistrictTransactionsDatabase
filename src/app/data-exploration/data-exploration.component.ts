@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Neo4jService } from '../neo4j.service';
+import { District } from 'src/shared/district';
 
 @Component({
   selector: 'app-data-exploration',
@@ -8,7 +9,8 @@ import { Neo4jService } from '../neo4j.service';
 })
 export class DataExplorationComponent implements OnInit {
 
-  schoolDistricts: string[] = [];
+  district: District|undefined = undefined
+  districts: District[] = [];
   fiscalYears: string[] = [];
 
   currentDistrict = '';
@@ -44,18 +46,21 @@ export class DataExplorationComponent implements OnInit {
 
   async getDistricts(): Promise<void> {
     let res = this.neo4jService.getDistricts();
-    res.then(x => x.forEach(dis => this.schoolDistricts.push(dis.District_Name)));
+    res.then(x => x.forEach(dis => this.districts.push(dis as District)));
+    // console.log(this.districts)
   }
   
   async getFiscalYears(): Promise<void> {
     this.fiscalYears = [];
     let res = this.neo4jService.getFiscalYears(this.currentDistrict);
     res.then(x => x.forEach(y => this.fiscalYears.push(y.FiscalYear)));
-    console.log(this.fiscalYears)
+    // console.log(this.fiscalYears)
   }
 
   districtUpdate(): void {
     this.getFiscalYears();
+    this.district = this.districts.find( e => e.District_Name == this.currentDistrict)
+    // console.log(this.district)
   }
 
   formatForTable(data:Object[]): void {

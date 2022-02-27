@@ -1,0 +1,47 @@
+<ng-container *ngIf="district">
+
+    <section>
+        <h2>{{district.District_Name}}</h2>
+    </section>
+
+    <!-- <div class="sect"> -->
+        <h3 class="sect_header">PEAKS</h3>
+
+        <div class="left_div">
+            <p #toolTip="matTooltip" matTooltip="English Langauge Art">ELA</p>
+            <h4>{{ela_bar_value}}%</h4>
+            <mat-progress-bar
+                class="ela_bar"
+                [color]="ela_bar_color"
+                mode="determinate"
+                [value]="ela_bar_value">
+            </mat-progress-bar>
+        </div>
+
+        <div class="right_div">
+            <p>Math</p>
+            <h4>{{math_bar_value}}%</h4>
+            <mat-progress-bar
+                class="math_bar"
+                [color]="math_bar_color"
+                mode="determinate"
+                [value]="math_bar_value">
+            </mat-progress-bar>
+        </div>
+    <!-- </div> -->
+
+    <!-- <div class="sect"> -->
+        <h3 class="sect_header">Students</h3>
+
+        <div class="left_div">
+            <p>Teacher to student ratio</p>
+            <h4>1:{{district.STRatio}}</h4>
+        </div>
+
+        <div class="right_div">
+            <p>Number of students</p>
+            <h4>{{district.TotalStudents}}</h4>
+        </div>
+    <!-- </div> -->
+
+</ng-container>
