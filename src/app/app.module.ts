@@ -10,6 +10,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatTooltipModule} from '@angular/material/tooltip'; 
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+// import {GoogleChartsModule} from 'angular-google-charts';
 
 import { AppComponent } from './app.component';
 import { TransactionsTableComponent } from './data-exploration/transactions-table/transactions-table.component';
@@ -36,7 +38,8 @@ import { DataVisualizationsComponent } from './data-exploration/data-visualizati
     MatProgressBarModule,
     MatTooltipModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

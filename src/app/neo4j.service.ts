@@ -38,31 +38,6 @@ export class Neo4jService {
       });
   }
 
-  // async getTransactions(): Promise<Object[]> {
-  //   let d = Neo4jService.createDriver();
-  //   let session = Neo4jService.createSession();
-    
-  //   let transactions: Object[] = [];
-
-  //   try {
-  //     const result = await session.readTransaction(tx =>
-  //       tx.run('MATCH (t:FullTransaction) RETURN t LIMIT 25')
-  //     )
-
-  //     const records = result.records
-  //     for (let i = 0; i < records.length; i++) {
-  //       const title = records[i].get(0).properties;
-  //       transactions.push(title);
-  //     }
-
-  //   } finally {
-  //     session.close();
-  //     d.close();
-  //   }
-
-  //   return transactions;
-  // }
-
   async getTransactions(district: string, fy: string): Promise<Object[]> {
     let d = Neo4jService.createDriver();
     let session = Neo4jService.createSession();

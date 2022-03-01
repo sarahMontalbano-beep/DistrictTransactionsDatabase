@@ -1,19 +1,4 @@
-<!-- <div *ngIf="transactions">
-    <table>
-        <thead>
-            <tr>
-                <th *ngFor="let label of labels">{{ label}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let transaction of transactions">
-                <td *ngFor="let prop of transaction">{{ prop }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
-
-<div *ngIf="transactions">
+<div *ngIf="(transactions.length > 0)">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         
         <ng-container *ngFor="let lCol of labels" matColumnDef={{lCol}}>
