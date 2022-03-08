@@ -40,8 +40,10 @@ export class DataExplorationComponent implements OnInit {
     this.labels = [];
     this.dColumns = []
     this.displayedColumns = new Map();
-    let res = this.neo4jService.getTransactions(this.currentDistrict, this.currentYear);
-    res.then(x => this.formatForTable(x));
+    let res = await this.neo4jService.getTransactions(this.currentDistrict, this.currentYear);
+    // res.then(x => this.formatForTable(x));
+    // res.then(x => console.log(x));
+    console.log(res);
   }
 
   async getDistricts(): Promise<void> {

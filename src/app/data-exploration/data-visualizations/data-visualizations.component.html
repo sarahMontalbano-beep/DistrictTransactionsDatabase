@@ -1,7 +1,11 @@
-<ngx-charts-pie-chart 
-    [results]="objectCodeData"
-    [legend]="true"
-    [legendTitle]="'Expenditures by Object Code'" 
-    [view]="[1000,300]"
-    [labels]="true" >
-</ngx-charts-pie-chart>
+<div *ngIf="(transactions.length > 0)">
+
+    <ngx-charts-pie-chart 
+        [results]="objectCodeData"
+        [legend]="true"
+        [legendTitle]="'Expenditures by Object Code'" 
+        [view]="[1000,300]"
+        [labels]="true" >
+    </ngx-charts-pie-chart>
+
+</div>

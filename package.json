@@ -20,7 +20,9 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "@swimlane/ngx-charts": "^20.0.1",
+    "express": "^4.17.3",
     "neo4j-driver": "^4.4.2",
+    "redis": "^4.0.4",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

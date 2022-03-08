@@ -11,13 +11,18 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-// import {GoogleChartsModule} from 'angular-google-charts';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TransactionsTableComponent } from './data-exploration/transactions-table/transactions-table.component';
 import { DataExplorationComponent } from './data-exploration/data-exploration.component';
 import { DistrictProfileComponent } from './data-exploration/district-profile/district-profile.component';
 import { DataVisualizationsComponent } from './data-exploration/data-visualizations/data-visualizations.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,9 @@ import { DataVisualizationsComponent } from './data-exploration/data-visualizati
     TransactionsTableComponent,
     DataExplorationComponent,
     DistrictProfileComponent,
-    DataVisualizationsComponent
+    DataVisualizationsComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,12 @@ import { DataVisualizationsComponent } from './data-exploration/data-visualizati
     MatTooltipModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    AppRoutingModule,
+    MatIconModule,
+    MatInputModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
