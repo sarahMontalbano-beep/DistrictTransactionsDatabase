@@ -1,3 +1,5 @@
+// Not currently used
+
 const redis = require('redis');
 
 class RedisMiddleware {

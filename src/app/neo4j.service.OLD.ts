@@ -1,3 +1,5 @@
+// Depreciated - Not currently used
+
 import { Injectable } from '@angular/core';
 import { auth, driver, Driver, ServerInfo, Session } from 'neo4j-driver';
 
