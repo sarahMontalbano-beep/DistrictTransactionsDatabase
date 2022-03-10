@@ -21,6 +21,14 @@ client.connect()
 
 app.locals.redisClient = client;
 
+process.on('SIGTERM', () => {
+    if (app.locals.redisClient) {
+        app.locals.redisClient.disconnect();
+        delete app.locals.redisClient;
+    }
+    server.close();
+  })
+
 // app.use(redisMiddleware.RedisMiddleware.clientSetup);
 // app.use(redisMiddleware.RedisMiddleware.clientCleanup)
 
@@ -35,6 +43,9 @@ app.use('/api/transactions', tRoutes);
 
 const dRoutes = require('./routes/District/district.routes');
 app.use('/api/districts', dRoutes)
+
+const yRoutes = require('./routes/Year/year.routes');
+app.use('/api/years', yRoutes)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

@@ -13,7 +13,7 @@ export class DataExplorationComponent implements OnInit {
   districts: District[] = [];
   fiscalYears: string[] = [];
 
-  currentDistrict = '';
+  currentDistrict: number = 0;
   currentYear = '';
 
   keywords = ['Name', 'Year','Object', 'Amount', 'Fund', 'Vendor'];
@@ -41,27 +41,33 @@ export class DataExplorationComponent implements OnInit {
     this.dColumns = []
     this.displayedColumns = new Map();
     let res = await this.neo4jService.getTransactions(this.currentDistrict, this.currentYear);
-    // res.then(x => this.formatForTable(x));
-    // res.then(x => console.log(x));
-    console.log(res);
+    this.formatForTable(res.data);
+    // console.log(res);
   }
 
   async getDistricts(): Promise<void> {
-    let res = this.neo4jService.getDistricts();
-    res.then(x => x.forEach(dis => this.districts.push(dis as District)));
-    // console.log(this.districts)
+
+    let res = await this.neo4jService.getDistricts();
+
+    res.data.districts.forEach((dis: Object) => this.districts.push(dis as District));
+
   }
   
   async getFiscalYears(): Promise<void> {
+
     this.fiscalYears = [];
-    let res = this.neo4jService.getFiscalYears(this.currentDistrict);
-    res.then(x => x.forEach(y => this.fiscalYears.push(y.FiscalYear)));
-    // console.log(this.fiscalYears)
+    
+    let name = (this.district)? this.district.District_Name : '';
+
+    let res = await this.neo4jService.getFiscalYears(name);
+
+    res.data.forEach((fy: number) => this.fiscalYears.push(fy.toString()));
+
   }
 
   districtUpdate(): void {
+    this.district = this.districts.find( e => e.id == this.currentDistrict);
     this.getFiscalYears();
-    this.district = this.districts.find( e => e.District_Name == this.currentDistrict)
     // console.log(this.district)
   }
 

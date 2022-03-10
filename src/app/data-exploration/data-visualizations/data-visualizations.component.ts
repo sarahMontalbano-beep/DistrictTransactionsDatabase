@@ -20,7 +20,7 @@ export class DataVisualizationsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if ('transactions' in changes && changes['transactions'].currentValue) {
       this.transactions = changes['transactions'].currentValue;
-      this.formatForPieChart(this.transactions);
+      this.formatForPieChart(changes['transactions'].currentValue);
     }
   }
 

@@ -1,6 +1,6 @@
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { auth, driver, Driver, ServerInfo, Session } from 'neo4j-driver';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,74 +9,48 @@ export class Neo4jService {
 
   constructor(private httpClient: HttpClient) {}
 
-  async getTransactions(district: string, fy: string): Promise<any> {
-    
-    let transactions: Object[] = [];
 
-    let query = 'MATCH (t:FullTransaction) RETURN t LIMIT 25';
+  async getTransactions(district: number, fy: string): Promise<any> {
 
-    if (district!='' || fy!='') {
-      query = 'MATCH (t:FullTransaction {District_Name:$dis, Fiscal_Year:$fy}) RETURN t LIMIT 25';
-    }
+    let params = new HttpParams();
 
-    // try {
-    //   const result = this.httpClient.get('http://localhost:5005/api/neo4j');
+    params = params.append('district', district);
 
-    //   const records = result.records
-    //   for (let i = 0; i < records.length; i++) {
-    //     const title = records[i].get(0).properties;
-    //     transactions.push(title);
-    //   }
+    params = params.append('year', fy);
 
-    // } finally {
-    // }
+    let observable = this.httpClient.get('http://localhost:5005/api/transactions', { params: params });
 
-    // return result;
-    return this.httpClient.get('http://localhost:5005/api/neo4j').toPromise();
+    let values = await lastValueFrom(observable);
+
+    return values;
+
   }
 
-  async getDistricts(): Promise<any[]> {
+  async getDistricts(): Promise<any> {
 
-    let districts: Object[] = [];
+    let observable = this.httpClient.get('http://localhost:5005/api/districts');
 
-    // try {
-    //   const result = await 
+    let values = await lastValueFrom(observable);
 
-    //   const records = result.records
-    //   for (let i = 0; i < records.length; i++) {
-    //     const title = records[i].get(0).properties;
-    //     districts.push(title);
-    //   }
+    return values;
 
-    // } finally {
-    // }
-
-    return districts;
   }
 
-  async getFiscalYears(district: string): Promise<any[]> {
-    
-    let years: Object[] = [];
+  async getFiscalYears(district: string): Promise<any> {
 
-    let query = 'MATCH (d:FullTransaction)-[OCCURRED_IN]->(fy:Fiscal_Year) RETURN DISTINCT fy'
+    if (district != '') {
+        let params = new HttpParams().set('district', district);
 
-    if (district!='') {
-      query = 'MATCH (d:FullTransaction{District_Name:$dn})-[OCCURRED_IN]->(fy:Fiscal_Year) RETURN DISTINCT fy'
+        let observable = this.httpClient.get('http://localhost:5005/api/years/getbydistrict', { params: params });
+
+        let values = await lastValueFrom(observable);
+
+        return values;
+    }
+    else {
+        return {data:[]}
     }
 
-    // try {
-    //   const result = 
-  
-    //   const records = result.records
-    //   for (let i = 0; i < records.length; i++) {
-    //     const title = records[i].get(0).properties;
-    //     years.push(title);
-    //   }
-  
-    // } finally {
-    // } 
-  
-    return years;
   }
 
 }

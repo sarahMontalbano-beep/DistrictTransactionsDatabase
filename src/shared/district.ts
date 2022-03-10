@@ -5,5 +5,6 @@ export interface District {
     Rural: number,
     STRatio: number,
     SchoolNo: number,
-    TotalStudents: number
+    TotalStudents: number,
+    id: number
 }

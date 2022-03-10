@@ -1,7 +1,7 @@
 <mat-form-field class="District" appearance="fill">
     <mat-label>School District</mat-label>
     <mat-select [(value)]="currentDistrict" (selectionChange)="districtUpdate()">
-        <mat-option *ngFor="let sd of districts" [value]="sd.District_Name">{{sd.District_Name}}</mat-option>
+        <mat-option *ngFor="let sd of districts" [value]="sd.id">{{sd.District_Name}}</mat-option>
     </mat-select>
 </mat-form-field>
 
