@@ -3,3 +3,16 @@ ngx-charts-pie-chart {
     width: 100%;
     float: left;
 }
+
+ngx-charts-bubble-chart {
+    display: block;
+    width: 100%;
+    float: right;
+}
+
+ngx-charts-bar-vertical {
+  display: block;
+  width: 100%;
+  float: right;
+}
+

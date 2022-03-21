@@ -1,7 +1,28 @@
-<ngx-charts-pie-chart 
+<ngx-charts-pie-chart
     [results]="objectCodeData"
     [legend]="true"
-    [legendTitle]="'Expenditures by Object Code'" 
+    [legendTitle]="'Expenditures by Object Code'"
     [view]="[1000,300]"
     [labels]="true" >
 </ngx-charts-pie-chart>
+
+<ngx-charts-bubble-chart
+  [results]="bubbleChartData"
+  [legend]="true"
+  [legendTitle]="'Districts by Total Number of Students, Fiscal Year, and PEAKS ELA Proficiency'"
+  [view]="[1000,300]" >
+</ngx-charts-bubble-chart>
+
+<ngx-charts-bar-vertical
+  [results] = "columnChartData"
+  [view]="[2000, 400]"
+  [gradient]="false"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legend]="true"
+  [showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+  [xAxisLabel]="'District'"
+  [yAxisLabel]="'PEAKS ELA proficiency'">
+</ngx-charts-bar-vertical>
+
