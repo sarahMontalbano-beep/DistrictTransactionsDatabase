@@ -12,10 +12,23 @@
     </mat-select>
 </mat-form-field>
 
+<mat-form-field class="District" appearance="fill">
+  <mat-label>Comparison District</mat-label>
+  <mat-select [(value)]="currentCompDistrict" (selectionChange)="compDistrictUpdate()">
+    <mat-option *ngFor="let sd of districts" [value]="sd.District_Name">{{sd.District_Name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="Year" appearance="fill">
+  <mat-label>Comparison Fiscal Year</mat-label>
+  <mat-select [(value)]="currentCompYear">
+    <mat-option *ngFor="let fy of fiscalYears" [value]="fy">{{fy}}</mat-option>
+  </mat-select>
+</mat-form-field>
 <button mat-raised-button color="primary" (click)="onUpdateButton()">Update</button>
 
 <app-district-profile [district]="district"></app-district-profile>
 
-<app-data-visualizations [transactions]="transactions"></app-data-visualizations>
+<app-data-visualizations [transactions]="transactions" [compTransactions]="compTransactions"></app-data-visualizations>
 
 <app-transactions-table [transactions]="transactions" [labels]="labels" [dColumns]="dColumns" [displayedColumns]="displayedColumns"></app-transactions-table>

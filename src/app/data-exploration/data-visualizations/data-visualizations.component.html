@@ -1,17 +1,18 @@
 <ngx-charts-pie-chart
-    [results]="objectCodeData"
+    [results]="District1ObjectCodeData"
     [legend]="true"
-    [legendTitle]="'Expenditures by Object Code'"
+    [legendTitle]="'Expenditures'"
     [view]="[1000,300]"
     [labels]="true" >
 </ngx-charts-pie-chart>
 
-<ngx-charts-bubble-chart
-  [results]="bubbleChartData"
+<ngx-charts-pie-chart
+  [results]="District2ObjectCodeData"
   [legend]="true"
-  [legendTitle]="'Districts by Total Number of Students, Fiscal Year, and PEAKS ELA Proficiency'"
-  [view]="[1000,300]" >
-</ngx-charts-bubble-chart>
+  [legendTitle]="'District 2 Expenditures by Object Code'"
+  [view]="[1000,300]"
+  [labels]="true" >
+</ngx-charts-pie-chart>
 
 <ngx-charts-bar-vertical
   [results] = "columnChartData"
@@ -23,6 +24,13 @@
   [showXAxisLabel]="true"
   [showYAxisLabel]="true"
   [xAxisLabel]="'District'"
-  [yAxisLabel]="'PEAKS ELA proficiency'">
+  [yAxisLabel]="'Proportion of Students Proficient in PEAKS ELA'">
+</ngx-charts-bar-vertical>
+
+<ngx-charts-bar-vertical
+  [results]="District1ObjectCodeData"
+  [legend]="true"
+  [legendTitle]="'Compare Two Districts'"
+  [view]="[1000,300]" >
 </ngx-charts-bar-vertical>
 

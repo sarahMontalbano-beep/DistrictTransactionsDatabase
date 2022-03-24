@@ -7,32 +7,41 @@ import { District } from 'src/shared/district';
   templateUrl: './data-exploration.component.html',
   styleUrls: ['./data-exploration.component.css']
 })
+
 export class DataExplorationComponent implements OnInit {
 
   district: District|undefined = undefined
+  compDistrict: District|undefined = undefined
   districts: District[] = [];
   fiscalYears: string[] = [];
 
   currentDistrict = '';
+  currentCompDistrict = '';
   currentYear = '';
+  currentCompYear = '';
 
-  keywords = ['Name', 'Year','Object', 'Amount', 'Fund', 'Vendor'];
+  keywords = ['Name', 'Year','Object', 'Amount', 'Description', 'Vendor'];
 
   transactions: any[] = [];
   labels: string[] = [];
   dColumns: string[] = []
   displayedColumns: Map<string, string> = new Map();
 
+  compTransactions: any[] = [];
+  compLabels: string[] = [];
+  compdColumns: string[] = []
+  compDisplayedColumns: Map<string, string> = new Map();
+
   constructor(private neo4jService: Neo4jService) { }
 
   ngOnInit(): void {
     this.getDistricts();
     this.getFiscalYears();
-    
   }
 
   onUpdateButton(): void {
     this.getTransactions();
+    this.getCompTransactions();
   }
 
   async getTransactions(): Promise<void> {
@@ -44,23 +53,35 @@ export class DataExplorationComponent implements OnInit {
     res.then(x => this.formatForTable(x));
   }
 
+  async getCompTransactions(): Promise<void> {
+    this.compTransactions = [];
+    this.compLabels = [];
+    this.compdColumns = []
+    this.compDisplayedColumns = new Map();
+    this.compTransactions = await this.neo4jService.getTransactions(this.currentCompDistrict, this.currentCompYear);
+  }
+
   async getDistricts(): Promise<void> {
     let res = this.neo4jService.getDistricts();
     res.then(x => x.forEach(dis => this.districts.push(dis as District)));
-    // console.log(this.districts)
   }
-  
+
   async getFiscalYears(): Promise<void> {
     this.fiscalYears = [];
     let res = this.neo4jService.getFiscalYears(this.currentDistrict);
     res.then(x => x.forEach(y => this.fiscalYears.push(y.FiscalYear)));
-    // console.log(this.fiscalYears)
   }
 
   districtUpdate(): void {
     this.getFiscalYears();
     this.district = this.districts.find( e => e.District_Name == this.currentDistrict)
-    // console.log(this.district)
+    console.log(this.district)
+  }
+
+  compDistrictUpdate(): void {
+    this.getFiscalYears();
+    this.compDistrict = this.districts.find( e => e.District_Name == this.currentCompDistrict)
+    console.log(this.compDistrict)
   }
 
   formatForTable(data:Object[]): void {
@@ -69,7 +90,7 @@ export class DataExplorationComponent implements OnInit {
       let names = Object.getOwnPropertyNames(data[0]);
       this.getImportantColumnNames(names);
     }
-  } 
+  }
 
   getImportantColumnNames(data:string[]): void {
     let tempLabels: string[] = [];
