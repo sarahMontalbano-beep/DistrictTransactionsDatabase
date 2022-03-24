@@ -1,11 +1,11 @@
-import { NextFunction, Request, Response } from 'express';
-import { verify } from 'jsonwebtoken';
-import { environment } from '../../environments/environment';
+
+let jwt = require('jsonwebtoken');
 
 // This class was heavily inspired by https://github.com/CharlBest/nean-stack-starter
 
-export class Authentication {
+class Authentication {
     static issuerName = 'apf-district-db';
+    static privateKey = 'super-secret-secret';
 
     static loginRequired(req, res, next) {
         if (!res.locals.user) {
@@ -22,7 +22,7 @@ export class Authentication {
             res.locals.user = null;
             next();
         } else {
-            verify(token, environment.authentication.privateKey, { issuer: Authentication.issuerName }, (error, decode) => {
+            jwt.verify(token, environment.authentication.privateKey, { issuer: Authentication.issuerName }, (error, decode) => {
                 if (error) {
                     res.locals.user = null;
                     // TODO: not sure if removing this is the right thing to do.
@@ -48,3 +48,5 @@ export class Authentication {
         return token;
     }
 }
+
+module.exports = {Authentication};
