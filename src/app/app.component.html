@@ -4,8 +4,8 @@
   <span>Explore Alaska's School District Expenditures</span>
   <a routerLink="/explore"><img src="assets/APF-Edited.png"></a>
   <div class="spacer"></div>
-  <div *ngIf="authService.isUserLoggedIn; else isLogOut">
-    <a class="nav-link" routerLink="/logout">Logout</a>
+  <div *ngIf="authService.isAuthenticated; else isLogOut">
+    <a class="nav-link" (click)="authService.removeToken()">Logout</a>
   </div>
 
   <ng-template #isLogOut>

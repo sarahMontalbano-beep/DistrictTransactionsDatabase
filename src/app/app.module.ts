@@ -21,8 +21,10 @@ import { DataExplorationComponent } from './data-exploration/data-exploration.co
 import { DistrictProfileComponent } from './data-exploration/district-profile/district-profile.component';
 import { DataVisualizationsComponent } from './data-exploration/data-visualizations/data-visualizations.component';
 import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
+// import { LogoutComponent } from './logout/logout.component';
 import { AppRoutingModule } from './app-routing.module';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AdminSectionComponent } from './admin-section/admin-section.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
     DistrictProfileComponent,
     DataVisualizationsComponent,
     LoginComponent,
-    LogoutComponent
+    UnauthorizedComponent,
+    AdminSectionComponent,
   ],
   imports: [
     BrowserModule,

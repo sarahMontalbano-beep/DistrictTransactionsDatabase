@@ -3,9 +3,8 @@ const express = require('express');
 const neo4jMiddleware = require('./middleware/neo4j.js');
 const cors = require('cors');
 const redis = require('redis');
+require("dotenv").config();
 // const redisMiddleware = require('./middleware/redis-middleware.js');
-
-// require('dotenv').config();
 
 const app = express();
 const port = 5005;
@@ -46,6 +45,9 @@ app.use('/api/districts', dRoutes)
 
 const yRoutes = require('./routes/Year/year.routes');
 app.use('/api/years', yRoutes)
+
+const uRoutes = require("./routes/User/user.routes");
+app.use('/api/users', uRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

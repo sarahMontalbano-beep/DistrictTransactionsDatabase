@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { AuthService } from './auth.service';
 
 @Component({
@@ -11,10 +13,12 @@ export class AppComponent {
   title = 'Districts Database';
   // isUserLoggedIn = false;
 
-  constructor(public authService: AuthService) {}
+  t : any | undefined = undefined;
 
+  constructor(public authService: AuthService, private router : Router) {}
 
   ngOnInit() {
-    this.authService.checkLogin();
+    this.authService.init();
   }
+
 }

@@ -7,3 +7,7 @@
 .formField {
    margin: auto;
 }
+
+.warning {
+   color: red;
+}
