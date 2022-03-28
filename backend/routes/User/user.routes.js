@@ -30,7 +30,7 @@ router.route('/login').post( async (req, res, next) => {
 
             token = jwt.sign(
             {
-                exp: Math.floor(Date.now() / 1000) + (60), /* 1 minute */
+                exp: Math.floor(Date.now() / 1000) + (60*60), /* 60 minute */
                 data: tokenData
             },
             '37C0-E231-E1F5-C407-80AA-94B8-F7AE-E4BB',

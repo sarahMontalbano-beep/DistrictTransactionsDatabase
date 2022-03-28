@@ -17,6 +17,8 @@ export class LocalStorageService {
     hasUserVisited: false
   };
 
+  id: null | string = null;
+
   get storageData(): StorageData {
     return this.localStorageData;
   }

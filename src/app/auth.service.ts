@@ -14,7 +14,8 @@ export class AuthService implements CanActivate {
     t : any | undefined = undefined;
 
     get isAuthenticated(): boolean {
-        return this.hasToken();
+      // console.log(this.localStorageService.id)
+      return this.hasToken() && (this.localStorageService.id != null);
     }
 
     constructor(private router: Router,
@@ -23,6 +24,8 @@ export class AuthService implements CanActivate {
     init(): void {
 
       this.localStorageService.loadStorageData();
+      const { id, expireDate } = this.getDataFromJWT(this.localStorageService.storageData.token);
+      this.localStorageService.id = id;
       this.logoutIfTokenExpired();
       this.logoutTimer();
 
@@ -30,7 +33,7 @@ export class AuthService implements CanActivate {
 
     logoutTimer(): void {
       if (this.isAuthenticated && !this.hasStoredTokenExpired()) {
-        this.t = setInterval( this.logoutIfTokenExpired.bind(this), (1000*10) );
+        this.t = setInterval( this.logoutIfTokenExpired.bind(this), (1000*60) );
         console.log('Timer started')
       }
     }
@@ -45,6 +48,13 @@ export class AuthService implements CanActivate {
           console.log('Timer cleared')
         }
       }
+    }
+
+    extendTokenExp() : void {
+      console.log('Token exp extended');
+      this.localStorageService.setUserStorageData({
+        exp: Math.floor(Date.now() / 1000) + (60*60)
+      });
     }
 
     getUserData(key: string): StorageData | null {
@@ -77,12 +87,16 @@ export class AuthService implements CanActivate {
             exp: expireDate
         });
 
+        this.localStorageService.id = id;
+
         this.logoutTimer();
         this.userLoggedInOrLoggedOut.emit();
     }
 
     removeToken(): void {
         this.localStorageService.setUserStorageData({ token: null });
+
+        this.localStorageService.id = null;
 
         this.userLoggedInOrLoggedOut.emit();
     }
@@ -113,11 +127,11 @@ export class AuthService implements CanActivate {
         }
     }
 
-    private getDataFromJWT(token?: string | null): { id: number | null, expireDate: number | null } {
+    private getDataFromJWT(token?: string | null): { id: string | null, expireDate: number | null } {
         if (token) {
             const parsedToken = this.parseJwt(token) as { data: any, exp: number };
 
-            const id = +parsedToken.data.i /* alias for ID */;
+            const id = parsedToken.data.username /* alias for ID */;
             const expireDate = +parsedToken.exp;
 
             return { id, expireDate };

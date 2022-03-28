@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AdminSectionComponent } from './admin-section/admin-section.component';
+import { DataUploadComponent } from './admin-section/data-upload/data-upload.component';
+import { QueryBoxComponent } from './admin-section/query-box/query-box.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { AdminSectionComponent } from './admin-section/admin-section.component';
     LoginComponent,
     UnauthorizedComponent,
     AdminSectionComponent,
+    DataUploadComponent,
+    QueryBoxComponent,
   ],
   imports: [
     BrowserModule,
