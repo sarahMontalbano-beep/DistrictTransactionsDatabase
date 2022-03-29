@@ -67,3 +67,7 @@ a:hover {
 a:hover {
   color: #125699;
 }
+
+.nav-link {
+  cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Neo4jService } from 'src/app/neo4j.service';
 
 @Component({
   selector: 'app-query-box',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryBoxComponent implements OnInit {
 
-  constructor() { }
+  query: string = "";
+
+  msg: string = "";
+
+  constructor(private neo4jSerive : Neo4jService) { }
 
   ngOnInit(): void {
+  }
+
+  async onSubmit() {
+    let results = await this.neo4jSerive.runQuery(this.query);
+
+    this.msg = JSON.stringify(results);
+
   }
 
 }

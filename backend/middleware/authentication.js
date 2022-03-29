@@ -4,8 +4,6 @@ let jwt = require('jsonwebtoken');
 // This class was heavily inspired by https://github.com/CharlBest/nean-stack-starter
 
 class Authentication {
-    static issuerName = 'apf-district-db';
-    static privateKey = 'super-secret-secret';
 
     static loginRequired(req, res, next) {
         if (!res.locals.user) {
@@ -22,7 +20,7 @@ class Authentication {
             res.locals.user = null;
             next();
         } else {
-            jwt.verify(token, environment.authentication.privateKey, { issuer: Authentication.issuerName }, (error, decode) => {
+            jwt.verify(token, '37C0-E231-E1F5-C407-80AA-94B8-F7AE-E4BB', { issuer: process.env.ISSUER_NAME }, (error, decode) => {
                 if (error) {
                     res.locals.user = null;
                     // TODO: not sure if removing this is the right thing to do.

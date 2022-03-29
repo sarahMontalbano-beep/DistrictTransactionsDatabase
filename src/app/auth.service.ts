@@ -101,6 +101,16 @@ export class AuthService implements CanActivate {
         this.userLoggedInOrLoggedOut.emit();
     }
 
+    removeTokenAndNavigateToExplore(): void {
+        this.localStorageService.setUserStorageData({ token: null });
+
+        this.localStorageService.id = null;
+
+        this.userLoggedInOrLoggedOut.emit();
+
+        this.router.navigate(['/explore']);
+    }
+
     hasToken(): boolean {
         return !!this.localStorageService.storageData.token;
     }

@@ -54,7 +54,11 @@ export class DataVisualizationsComponent implements OnInit {
       let keys = Array.from(tempMap.keys())
       let tempArr = []
       for (let k = 0; k < keys.length; k++) {
-        tempArr.push({name: keys[k], value: tempMap.get(keys[k])})
+        let value = tempMap.get(keys[k]);
+        let num = value ?? 0;
+        if (num > 0) {
+          tempArr.push({name: keys[k], value: tempMap.get(keys[k])});
+        }
       }
       this.objectCodeData = [...tempArr]
     }

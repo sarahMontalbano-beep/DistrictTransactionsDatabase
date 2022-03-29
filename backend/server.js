@@ -3,6 +3,7 @@ const express = require('express');
 const neo4jMiddleware = require('./middleware/neo4j.js');
 const cors = require('cors');
 const redis = require('redis');
+const auth = require('./middleware/authentication');
 require("dotenv").config();
 // const redisMiddleware = require('./middleware/redis-middleware.js');
 
@@ -35,6 +36,8 @@ app.use(neo4jMiddleware.Neo4j.sessionSetup);
 app.use(neo4jMiddleware.Neo4j.sessionCleanup);
 
 
+app.use(auth.Authentication.setUser)
+
 // Routes
 
 const tRoutes = require("./routes/FullTransaction/transaction.routes");
@@ -48,6 +51,9 @@ app.use('/api/years', yRoutes)
 
 const uRoutes = require("./routes/User/user.routes");
 app.use('/api/users', uRoutes);
+
+const aRoutes = require("./routes/Admin/admin.routes");
+app.use('/api/admin', aRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
