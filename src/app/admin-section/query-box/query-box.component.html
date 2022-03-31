@@ -1,0 +1,13 @@
+<h3>Run cypher queries</h3>
+
+<form>
+  <mat-form-field appearance="fill">
+    <mat-label>Query:</mat-label>
+    <textarea matInput [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
+        </textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Run</button>
+</form>
+
+<p>{{msg}}</p>

@@ -1,72 +1,57 @@
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { AuthService } from './auth.service';
+import { LocalStorageService } from './storage.service';
 import { auth, driver, Driver, ServerInfo, Session } from 'neo4j-driver';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Neo4jService {
-  //Neo4j Aura
-  //private neo4jUrl: string = 'neo4j://localhost:7687';
-  //Local
-  private neo4jUrl: string = 'neo4j+s://e5f3f164.databases.neo4j.io:7687';
+
+  constructor(private httpClient: HttpClient,
+              private authService: AuthService, private localStorageService: LocalStorageService) {}
 
   static driver: Driver;
 
-
-  constructor() {}
-
-  public static createDriver(): Driver {
+  public static createDriver() {
     // if (!this.driver){
-      this.driver = driver(
-        'neo4j://localhost:7687',
-          auth.basic('angular', 'newpassword'),
-          {
-              disableLosslessIntegers: true,
-          }
-      );
+    this.driver = driver(
+      'neo4j://localhost:7687',
+      auth.basic('angular', 'newpassword'),
+      {
+        disableLosslessIntegers: true,
+      }
+    );
     // }
     return this.driver;
   }
 
   static createSession(): Session {
-      if (!this.driver) {
-          this.driver = this.createDriver();
-      }
+    if (!this.driver) {
+      this.driver = this.createDriver();
+    }
 
-      return this.driver.session({
-          database: 'neo4j'
-      });
+    return this.driver.session({
+      database: 'neo4j'
+    });
   }
 
-  async getTransactions(district: string, fy: string): Promise<Object[]> {
-    let d = Neo4jService.createDriver();
-    let session = Neo4jService.createSession();
+  async getTransactions(district: string, fy: string): Promise<any> {
 
-    let transactions: Object[] = [];
+    let params = new HttpParams();
 
-    let query = 'MATCH (t:FullTransaction) RETURN t LIMIT 1000';
+    params = params.append('district', district);
 
-    if (district!='' || fy!='') {
-      query = 'MATCH (t:FullTransaction {District_Name:$dis, Fiscal_Year:$fy}) RETURN t LIMIT 1000';
-    }
+    params = params.append('year', fy);
 
-    try {
-      const result = await session.readTransaction(tx =>
-        tx.run(query, {'dis': district, 'fy': fy})
-      )
+    let observable = this.httpClient.get('http://apf-districts.westus2.cloudapp.azure.com:5005/api/transactions', { params: params });
 
-      const records = result.records
-      for (let i = 0; i < records.length; i++) {
-        const title = records[i].get(0).properties;
-        transactions.push(title);
-      }
+    let values = await lastValueFrom(observable);
 
-    } finally {
-      session.close();
-      d.close();
-    }
+    return values;
 
-    return transactions;
   }
 
   async getDistricts(): Promise<any[]> {
@@ -123,6 +108,28 @@ export class Neo4jService {
     }
 
     return years;
+  }
+
+  async runQuery(query: string): Promise<any> {
+    if (this.authService.isAuthenticated){
+
+      if (query != '') {
+        console.log(query);
+
+        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.localStorageService.storageData.token);
+
+        let observable = this.httpClient.post('http://apf-districts.westus2.cloudapp.azure.com:5005/api/admin/query', {query: query}, {headers: headers});
+
+        let values = await lastValueFrom(observable);
+
+        return values;
+      }
+      else {
+        return {data:[]}
+      }
+
+    }
+
   }
 
 }

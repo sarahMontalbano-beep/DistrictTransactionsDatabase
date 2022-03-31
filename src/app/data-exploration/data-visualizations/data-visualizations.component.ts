@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import {Neo4jService} from "../../neo4j.service";
-import { District } from 'src/shared/district';
 
 @Component({
   selector: 'app-data-visualizations',
@@ -8,7 +7,7 @@ import { District } from 'src/shared/district';
   styleUrls: ['./data-visualizations.component.css']
 })
 
-export class DataVisualizationsComponent implements OnInit {
+  export class DataVisualizationsComponent implements OnInit {
 
   @Input() transactions: Object[] = []
   @Input() compTransactions: Object[] = []
@@ -84,7 +83,6 @@ export class DataVisualizationsComponent implements OnInit {
           let t = transactions[i]
           let oc = String(t['Object_Code'])
           if (oc in Array.from(tempMap.keys())) {
-            // let index = this.oDataIndexes[String(t['Object_Code'])]
             tempMap.set(oc, tempMap.get(oc)+t[key])
           }
           else {
@@ -97,7 +95,11 @@ export class DataVisualizationsComponent implements OnInit {
       console.log(tempMap)
       let tempArr = []
       for (let k = 0; k < keys.length; k++) {
-        tempArr.push({name: keys[k], value: tempMap.get(keys[k])})
+        let value = tempMap.get(keys[k]);
+        let num = value ?? 0;
+        if (num > 0) {
+          tempArr.push({name: keys[k], value: tempMap.get(keys[k])})
+        }
       }
       this.District1ObjectCodeData = [...tempArr]
       console.log(this.District1ObjectCodeData)
@@ -137,7 +139,11 @@ export class DataVisualizationsComponent implements OnInit {
       console.log(tempMap)
       let tempArr = []
       for (let k = 0; k < keys.length; k++) {
-        tempArr.push({name: keys[k], value: tempMap.get(keys[k])})
+        let value = tempMap.get(keys[k]);
+        let num = value ?? 0;
+        if (num > 0) {
+          tempArr.push({name: keys[k], value: tempMap.get(keys[k])})
+        }
       }
       this.District2ObjectCodeData = [...tempArr]
       console.log(this.District2ObjectCodeData)

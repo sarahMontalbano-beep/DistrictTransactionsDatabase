@@ -2,11 +2,18 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <span>Explore Alaska's School District Expenditures</span>
-  <img src="assets/APF-Edited.png">
+  <a routerLink="/explore"><img src="assets/APF-Edited.png"></a>
   <div class="spacer"></div>
-  <a><h4>Admin Login</h4></a>
+  <div *ngIf="authService.isAuthenticated; else isLogOut">
+    <a class="nav-link" (click)="authService.removeTokenAndNavigateToExplore()">Logout</a>
+  </div>
+
+  <ng-template #isLogOut>
+    <a class="nav-link" routerLink="/login">Login</a>
+  </ng-template>
 </div>
 
 <div class="content" role="main">
   <app-data-exploration></app-data-exploration>
+  <router-outlet></router-outlet>
 </div>
