@@ -20,7 +20,9 @@ export class DataVisualizationsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if ('transactions' in changes && changes['transactions'].currentValue) {
       this.transactions = changes['transactions'].currentValue;
-      this.formatForPieChart(changes['transactions'].currentValue);
+      // if (this.transactions.length > 0 && this.transactions[0].hasOwnProperty("Object_Code")) {
+        this.formatForPieChart(changes['transactions'].currentValue);
+      // }
     }
   }
 
@@ -35,6 +37,10 @@ export class DataVisualizationsComponent implements OnInit {
           break;
         }
         else if (prop.toLowerCase().indexOf('credit') > -1) {
+          key = prop;
+          break;
+        }
+        else if (prop.toLowerCase().indexOf('debit') > -1) {
           key = prop;
           break;
         }

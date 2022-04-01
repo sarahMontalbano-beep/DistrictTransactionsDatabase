@@ -16,7 +16,7 @@ export class DataExplorationComponent implements OnInit {
   currentDistrict: number = 0;
   currentYear = '';
 
-  keywords = ['Name', 'Year','Object', 'Amount', 'Fund', 'Vendor'];
+  keywords = ['Name', 'Year','Object', 'Amount', 'Fund', 'Vendor', 'Credit', 'Debit'];
 
   transactions: any[] = [];
   labels: string[] = [];

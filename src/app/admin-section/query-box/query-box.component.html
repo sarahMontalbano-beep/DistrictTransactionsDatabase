@@ -1,14 +1,68 @@
 <h3>Run cypher queries</h3>
 
-<form>
-    <mat-form-field appearance="fill">
-        <mat-label>Query:</mat-label>
-        <textarea matInput [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
-        </textarea>
-    </mat-form-field>
+<p class="warning">Please be careful with this tool. Effects cannot be undone!</p>
 
+<div><p>Query Box:</p></div>
+
+<div class="query-container">
+    <textarea matInput [(ngModel)]="query" 
+    [ngModelOptions]="{standalone: true}" class="box"></textarea>
+</div>
+
+<br>
+
+<div>
     <button mat-raised-button color="primary" (click)="onSubmit()">Run</button>
-</form>
+    {{msg}}
+    <button mat-raised-button color="accent" class="template" (click)="template('match')">Match query</button>
+    <button mat-raised-button color="accent" class="template" (click)="template('mod_node')">Modify node</button>
+    <button mat-raised-button color="accent" class="template" (click)="template('add_user')">Add user</button>
+    <button mat-raised-button color="accent" class="template" (click)="template('add_year')">Add year</button>
+    <button mat-raised-button color="accent" class="template" (click)="template('clear')">Clear query</button>
+</div>
 
-<p>{{msg}}</p>
-  
+<br>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        Query Summary
+        </mat-panel-title>
+        <mat-panel-description>
+        <mat-icon>list</mat-icon>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div>
+        <mat-list>
+            <mat-list-item>Nodes Read: {{nodesRead}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Nodes Created: {{nodesCreated}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Nodes Deleted: {{nodesDeleted}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Relationship Created: {{relCreated}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Relationship Deleted: {{relDeleted}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Properties Set: {{propsSet}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Labels Added: {{labelsAdded}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Labels Removed: {{labelsRemoved}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Indexes Added: {{indexAdded}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Indexes Removed: {{indexRemoved}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Contraint Added: {{constAdded}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Contraint Removed: {{constRemoved}}</mat-list-item>
+        </mat-list>
+    </div>
+
+</mat-expansion-panel>
+
+<app-data-visualizations [transactions]="transactions"></app-data-visualizations>
+
+<app-transactions-table [transactions]="transactions" [labels]="labels" [dColumns]="dColumns" [displayedColumns]="displayedColumns"></app-transactions-table>

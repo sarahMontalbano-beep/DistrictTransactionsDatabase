@@ -11,8 +11,6 @@ router.route('/query').post( async (req, res, next) => {
             let query = req.body.query ?? '';
             let queryLower = query.toLowerCase();
 
-            console.log(query);
-
             if (queryLower && queryLower.indexOf('set') == -1 && queryLower.indexOf('create') == -1 
             && queryLower.indexOf('delete') == -1) {
                 const results = await res.locals.neo4jSession.readTransaction(
@@ -21,7 +19,8 @@ router.route('/query').post( async (req, res, next) => {
                 results.records.forEach(element => {
                     resultsArr.push(element._fields[0].properties);
                 });
-                res.json({data: resultsArr});
+                let data = {results: resultsArr, summary: results.summary}
+                res.json({data: data});
             }
             else {
                 const result = await res.locals.neo4jSession.writeTransaction(

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataUploadComponent implements OnInit {
 
+  // INVALIDATE REDIS CACHE
+
   constructor() { }
 
   ngOnInit(): void {

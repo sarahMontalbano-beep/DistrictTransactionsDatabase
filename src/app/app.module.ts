@@ -7,13 +7,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatTooltipModule} from '@angular/material/tooltip'; 
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list'
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion'; 
 
 import { AppComponent } from './app.component';
 import { TransactionsTableComponent } from './data-exploration/transactions-table/transactions-table.component';
@@ -21,7 +24,6 @@ import { DataExplorationComponent } from './data-exploration/data-exploration.co
 import { DistrictProfileComponent } from './data-exploration/district-profile/district-profile.component';
 import { DataVisualizationsComponent } from './data-exploration/data-visualizations/data-visualizations.component';
 import { LoginComponent } from './login/login.component';
-// import { LogoutComponent } from './logout/logout.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AdminSectionComponent } from './admin-section/admin-section.component';
@@ -39,7 +41,7 @@ import { QueryBoxComponent } from './admin-section/query-box/query-box.component
     UnauthorizedComponent,
     AdminSectionComponent,
     DataUploadComponent,
-    QueryBoxComponent,
+    QueryBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,11 @@ import { QueryBoxComponent } from './admin-section/query-box/query-box.component
     MatIconModule,
     MatInputModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    MatDividerModule,
+    MatExpansionModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
