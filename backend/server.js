@@ -4,6 +4,9 @@ const neo4jMiddleware = require('./middleware/neo4j.js');
 const cors = require('cors');
 const redis = require('redis');
 const auth = require('./middleware/authentication');
+// var path = require('path');
+// var fs = require('fs-extra');
+const fileUpload = require('express-fileupload');
 require("dotenv").config();
 // const redisMiddleware = require('./middleware/redis-middleware.js');
 
@@ -14,6 +17,8 @@ const port = 5005;
 
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload());
+// app.use(express.static(path.join(__dirname, 'public')));
 
 const client = redis.createClient();
 

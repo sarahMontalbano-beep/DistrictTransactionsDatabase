@@ -56,6 +56,16 @@ export class Neo4jService {
 
   }
 
+  async getAllFiscalYears(): Promise<any> {
+
+    let observable = this.httpClient.get('http://localhost:5005/api/years/getall');
+
+    let values = await lastValueFrom(observable);
+
+    return values;
+
+  }
+
   async runQuery(query: string): Promise<any> {
     if (this.authService.isAuthenticated){
 
@@ -65,6 +75,29 @@ export class Neo4jService {
         let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.localStorageService.storageData.token);
 
         let observable = this.httpClient.post('http://localhost:5005/api/admin/query', {query: query}, {headers: headers});
+
+        let values = await lastValueFrom(observable);
+
+        return values;
+      }
+      else {
+          return {data:[]}
+      }
+
+    }
+
+  }
+
+  async uploadFile(data: any): Promise<any> {
+    if (this.authService.isAuthenticated){
+
+      if (data) {
+
+        // console.log(data)
+
+        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.localStorageService.storageData.token);
+
+        let observable = this.httpClient.post('http://localhost:5005/api/admin/upload', data, {headers: headers});
 
         let values = await lastValueFrom(observable);
 

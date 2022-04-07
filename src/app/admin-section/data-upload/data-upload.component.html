@@ -1,4 +1,55 @@
 <h3>Upload new district data</h3>
 
+<mat-form-field class="District" appearance="fill">
+    <mat-label>School District</mat-label>
+    <mat-select (selectionChange)="districtUpdate()" [(value)]="currentDistrict"  required>
+        <mat-option *ngFor="let sd of districts" [value]="sd.id">{{sd.District_Name}}</mat-option>
+    </mat-select>
+</mat-form-field>
 
-<input type="file" id="file">
+<mat-form-field class="Year" appearance="fill">
+    <mat-label>Fiscal Year</mat-label>
+    <mat-select [(value)]="currentYear" required>
+        <mat-option *ngFor="let fy of fiscalYears" [value]="fy">{{fy}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<input type="file" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload">
+
+   {{fileName || "No file uploaded yet."}}
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+      (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+</div>
+
+<button class="Year" mat-raised-button color="primary" (click)="onUpload()">Upload</button>
+
+<!-- <form [formGroup]="formData">
+    <mat-form-field class="District" appearance="fill">
+        <mat-label>School District</mat-label>
+        <mat-select formControlName="district" (selectionChange)="districtUpdate()" [(value)]="currentDistrict"  required>
+            <mat-option *ngFor="let sd of districts" [value]="sd.id">{{sd.District_Name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="Year" appearance="fill">
+        <mat-label>Fiscal Year</mat-label>
+        <mat-select [(value)]="currentYear" formControlName="year" required>
+            <mat-option *ngFor="let fy of fiscalYears" [value]="fy">{{fy}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <input class="Year" type="file" id="file" formControlName="file" required>
+
+    <br>
+
+    <button class="Year" mat-raised-button color="primary" (click)="onUpload(formData)">Upload</button>
+
+</form> -->

@@ -57,4 +57,41 @@ router.route('/getbydistrict').get( async (req, res, next) => {
     }
 });
 
+async function getDistrictNames(req, res) {
+
+    const districtNames = await req.app.locals.redisClient.get('districtNames');
+    
+    if (districtNames == null) {
+        const results = await res.locals.neo4jSession.run('MATCH (d:District) RETURN d.District_Name');
+        const resultsArr = [];
+        results.records.forEach(element => {
+            resultsArr.push(element._fields[0]);
+        });
+        await req.app.locals.redisClient.set('districtNames', JSON.stringify(resultsArr));
+        return resultsArr;
+    }
+    else {
+        return JSON.parse(districtNames);
+    }
+
+}
+
+router.route('/getall').get( async (req, res, next) => {
+    try {
+        let query = 'MATCH (fy:Fiscal_Year) RETURN fy;';
+
+        const results = await res.locals.neo4jSession.readTransaction(
+            tx => tx.run(query));
+        const resultsArr = [];
+        results.records.forEach(element => {
+            resultsArr.push(element._fields[0]);
+        });
+        res.json({data: resultsArr});
+
+    }
+    catch {
+        next();
+    }
+});
+
 module.exports = router;
