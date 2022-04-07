@@ -13,7 +13,7 @@ import {MatPaginator} from '@angular/material/paginator';
 
 export class TransactionsTableComponent implements OnInit {
 
-  keywords = ['Name', 'Year','Object', 'Amount', 'Fund', 'Vendor'];
+  keywords = ['Name', 'Year','Object', 'Amount', 'Credit', 'Debit', 'Fund', 'Vendor'];
 
   @Input() transactions: any[] = [];
 
@@ -22,7 +22,7 @@ export class TransactionsTableComponent implements OnInit {
   @Input() labels: string[] = [];
   @Input() dColumns: string[] = []
   @Input() displayedColumns: Map<string, string> = new Map();
-  
+
   // MatPaginator Inputs
   length = 100;
   pageSize = 10;

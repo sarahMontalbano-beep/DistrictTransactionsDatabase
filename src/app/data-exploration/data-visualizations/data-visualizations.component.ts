@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import {Neo4jService} from "../../neo4j.service";
+import {LegendPosition} from "@swimlane/ngx-charts";
+import {District} from "../../../shared/district";
 
 @Component({
   selector: 'app-data-visualizations',
@@ -11,14 +13,23 @@ import {Neo4jService} from "../../neo4j.service";
 
   @Input() transactions: Object[] = []
   @Input() compTransactions: Object[] = []
+  @Input() district: District|undefined = undefined
+  @Input() compDistrict: District|undefined = undefined
+  @Input() currentYear = ''
+  @Input() currentCompYear = ''
 
   District1ObjectCodeData: Object[] = []
   District2ObjectCodeData: Object[] = []
+  combinedObjectCodeData: Object[] = []
   columnChartData: Object[] = []
   oDataIndexes: any = {}
   districts: Object[] = [];
+  below = LegendPosition.Below;
+  Title: string = "";
+  compTitle: string = "";
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.formatForColumnChart();
@@ -28,11 +39,12 @@ import {Neo4jService} from "../../neo4j.service";
     if ('transactions' in changes && changes['transactions'].currentValue) {
       this.transactions = changes['transactions'].currentValue;
       this.formatForPieChart(this.transactions);
-
     }
-    if ('compTransactions' in changes && changes['compTransactions'].currentValue) {
-      this.compTransactions = changes['compTransactions'].currentValue;
-      this.formatForCompPieChart(this.compTransactions);
+    if (this.compDistrict != undefined) {
+      if ('compTransactions' in changes && changes['compTransactions'].currentValue) {
+        this.compTransactions = changes['compTransactions'].currentValue;
+        this.formatForCompPieChart(this.compTransactions);
+      }
     }
   }
 
@@ -65,15 +77,15 @@ import {Neo4jService} from "../../neo4j.service";
 
   formatForPieChart(transactions: any[]) {
     //console.log('working');
+    let district_name;
     if (transactions.length > 0) {
       let tempMap: Map<string, number> = new Map()
       let key = ''
-      for(var prop of Object.keys(transactions[0])) {
+      for (var prop of Object.keys(transactions[0])) {
         if (prop.toLowerCase().indexOf('amount') > -1) {
           key = prop;
           break;
-        }
-        else if (prop.toLowerCase().indexOf('credit') > -1) {
+        } else if (prop.toLowerCase().indexOf('credit') > -1) {
           key = prop;
           break;
         }
@@ -83,9 +95,8 @@ import {Neo4jService} from "../../neo4j.service";
           let t = transactions[i]
           let oc = String(t['Object_Code'])
           if (oc in Array.from(tempMap.keys())) {
-            tempMap.set(oc, tempMap.get(oc)+t[key])
-          }
-          else {
+            tempMap.set(oc, tempMap.get(oc) + t[key])
+          } else {
             tempMap.set(oc, t[key])
           }
         }
@@ -102,6 +113,9 @@ import {Neo4jService} from "../../neo4j.service";
         }
       }
       this.District1ObjectCodeData = [...tempArr]
+      district_name = this.district?.District_Name;
+      let fy = this.currentYear;
+      this.Title = `Expenditures by Object Code for ${district_name}, Fiscal Year 20${fy}`;
       console.log(this.District1ObjectCodeData)
     }
   }
@@ -112,12 +126,11 @@ import {Neo4jService} from "../../neo4j.service";
       let tempMap: Map<string, number> = new Map()
 
       let key = ''
-      for(var prop of Object.keys(compTransactions[0])) {
+      for (var prop of Object.keys(compTransactions[0])) {
         if (prop.toLowerCase().indexOf('amount') > -1) {
           key = prop;
           break;
-        }
-        else if (prop.toLowerCase().indexOf('credit') > -1) {
+        } else if (prop.toLowerCase().indexOf('credit') > -1) {
           key = prop;
           break;
         }
@@ -127,9 +140,8 @@ import {Neo4jService} from "../../neo4j.service";
           let t = compTransactions[i]
           let oc = String(t['Object_Code'])
           if (oc in Array.from(tempMap.keys())) {
-            tempMap.set(oc, tempMap.get(oc)+t[key])
-          }
-          else {
+            tempMap.set(oc, tempMap.get(oc) + t[key])
+          } else {
             tempMap.set(oc, t[key])
           }
         }
@@ -146,10 +158,12 @@ import {Neo4jService} from "../../neo4j.service";
         }
       }
       this.District2ObjectCodeData = [...tempArr]
-      console.log(this.District2ObjectCodeData)
+      this.combinedObjectCodeData = this.District1ObjectCodeData.concat(this.District2ObjectCodeData);
+      let district_name = this.compDistrict?.District_Name;
+      let fy = this.currentCompYear;
+      this.compTitle = `Expenditures by Object Code for ${district_name}, Fiscal Year 20${fy}`;
     }
   }
-
   async getDistricts(): Promise<any[]> {
     let d = Neo4jService.createDriver();
     let session = Neo4jService.createSession();

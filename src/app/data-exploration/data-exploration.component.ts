@@ -20,7 +20,7 @@ export class DataExplorationComponent implements OnInit {
   currentYear = '';
   currentCompYear = '';
 
-  keywords = ['Name', 'Year','Object', 'Amount', 'Description', 'Vendor'];
+  keywords = ['Name', 'Year','Object', 'Amount', 'Credit', 'Debit', 'Description', 'Vendor'];
 
   transactions: any[] = [];
   labels: string[] = [];

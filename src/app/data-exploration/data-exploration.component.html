@@ -29,6 +29,6 @@
 
 <app-district-profile [district]="district"></app-district-profile>
 
-<app-data-visualizations [transactions]="transactions" [compTransactions]="compTransactions"></app-data-visualizations>
+<app-data-visualizations [transactions]="transactions" [compTransactions]="compTransactions" [district] = "district" [compDistrict] = "compDistrict" [currentYear]="currentYear" [currentCompYear]="currentCompYear"></app-data-visualizations>
 
 <app-transactions-table [transactions]="transactions" [labels]="labels" [dColumns]="dColumns" [displayedColumns]="displayedColumns"></app-transactions-table>
