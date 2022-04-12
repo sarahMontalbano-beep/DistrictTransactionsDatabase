@@ -114,6 +114,10 @@ import {District} from "../../../shared/district";
       }
       this.District1ObjectCodeData = [...tempArr]
       district_name = this.district?.District_Name;
+      if (this.currentYear == '' && this.currentCompYear != '') {
+        this.currentYear = this.currentCompYear;
+        // do not reassign currentCompYear because it needs to carry over if you select a 1st district and leave
+      }
       let fy = this.currentYear;
       this.Title = `Expenditures by Object Code for ${district_name}, Fiscal Year 20${fy}`;
       console.log(this.District1ObjectCodeData)
@@ -121,7 +125,6 @@ import {District} from "../../../shared/district";
   }
 
   formatForCompPieChart(compTransactions: any[]) {
-    console.log('working');
     if (compTransactions.length > 0) {
       let tempMap: Map<string, number> = new Map()
 

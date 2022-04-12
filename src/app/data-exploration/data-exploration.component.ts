@@ -42,6 +42,8 @@ export class DataExplorationComponent implements OnInit {
   onUpdateButton(): void {
     this.getTransactions();
     this.getCompTransactions();
+    this.districtUpdate();
+    this.compDistrictUpdate();
   }
 
   async getTransactions(): Promise<void> {
@@ -73,15 +75,16 @@ export class DataExplorationComponent implements OnInit {
   }
 
   districtUpdate(): void {
-    this.getFiscalYears();
     this.district = this.districts.find( e => e.District_Name == this.currentDistrict)
     console.log(this.district)
   }
 
   compDistrictUpdate(): void {
-    this.getFiscalYears();
     this.compDistrict = this.districts.find( e => e.District_Name == this.currentCompDistrict)
-    console.log(this.compDistrict)
+    if (this.district == undefined && this.compDistrict != undefined) {
+      this.district = this.compDistrict;
+      this.compDistrict = undefined;
+    }
   }
 
   formatForTable(data:Object[]): void {
