@@ -9,3 +9,11 @@
 .file-input {
     display: none;
   }
+
+.file-upload {
+    margin:20px;
+}
+
+.warning {
+    color: red;
+}

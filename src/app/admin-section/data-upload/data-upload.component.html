@@ -3,7 +3,7 @@
 <mat-form-field class="District" appearance="fill">
     <mat-label>School District</mat-label>
     <mat-select (selectionChange)="districtUpdate()" [(value)]="currentDistrict"  required>
-        <mat-option *ngFor="let sd of districts" [value]="sd.id">{{sd.District_Name}}</mat-option>
+        <mat-option *ngFor="let sd of districts" [value]="sd.District_Name">{{sd.District_Name}}</mat-option>
     </mat-select>
 </mat-form-field>
 
@@ -13,6 +13,8 @@
         <mat-option *ngFor="let fy of fiscalYears" [value]="fy">{{fy}}</mat-option>
     </mat-select>
 </mat-form-field>
+
+<div><p class="warning">.xls file types are preferred but .xslx files are also compatible. Please convert .csv files to .xls before upload.</p></div>
 
 <input type="file" class="file-input"
        (change)="onFileSelected($event)" #fileUpload>
@@ -27,7 +29,26 @@
     </button>
 </div>
 
-<button class="Year" mat-raised-button color="primary" (click)="onUpload()">Upload</button>
+<div>
+    <button class="Year" mat-raised-button color="primary" (click)="onUpload()">Upload</button>
+    {{resStatus}}
+</div>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        Result Summary
+        </mat-panel-title>
+        <mat-panel-description>
+        <mat-icon>list</mat-icon>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div>
+        <p>Script Output: {{resOutput}}</p>
+    </div>
+
+</mat-expansion-panel>
 
 <!-- <form [formGroup]="formData">
     <mat-form-field class="District" appearance="fill">

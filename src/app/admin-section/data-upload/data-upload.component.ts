@@ -4,7 +4,10 @@ import { HttpClient } from '@angular/common/http';
 
 import { FormGroup, FormControl } from '@angular/forms';
 
+import { RedisDefaultModules } from 'redis';
+
 import { Neo4jService } from 'src/app/neo4j.service';
+import RedisClient from '@node-redis/client/dist/lib/client';
 
 @Component({
   selector: 'app-data-upload',
@@ -37,6 +40,9 @@ export class DataUploadComponent implements OnInit {
   fileName = '';
   currentFile: File|null = null; 
 
+  resStatus = '';
+  resOutput = '';
+
   constructor(private neo4jService: Neo4jService) { }
 
   ngOnInit(): void {
@@ -59,12 +65,15 @@ export class DataUploadComponent implements OnInit {
       formData.append("year", this.currentYear);
       formData.append("district", this.currentDistrict.toString());
 
-      console.log(formData)
+      // console.log(formData)
       // const upload$ = this.http.post("http://localhost:5005/api/admin/upload", formData);
       let res = await this.neo4jService.uploadFile(formData);
-      console.log(res)
+      // console.log(res)
+      this.resStatus = res.status;
+      this.resOutput = res.output;
     }
   }
+
 
   async getDistricts(): Promise<void> {
 
