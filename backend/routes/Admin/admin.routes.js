@@ -37,7 +37,7 @@ router.route('/query').post( async (req, res, next) => {
 });
 
 router.route('/upload').post( async (req, res, next) => {
-    console.log('Upload hit')
+    //console.log('Upload hit')
     // console.log(req)
     // if (!res.locals.user) {
     //     res.status(401).send({ detail: 'Unauthorized user' });
@@ -51,37 +51,55 @@ router.route('/upload').post( async (req, res, next) => {
             let district = req.body.district
             console.log(district)
 
-            // let file = req['files'].file;
-            // console.log("File uploaded: ", file.name);
+            let file = req['files'].file;
+            console.log("File uploaded: ", file.name);
 
-            // fs.writeFile('C:\\Users\\eBay User\\Documents\\CLASSES\\CSCI483\\DistrictTransactionsDatabase\\backend\\public\\file.csv',
-            //     file.data, err => {
-            //     if (err) {
-            //       console.error(err);
-            //     }
-            // });
+            fs.writeFile('//home//apf-admin//DistrictTransactionsDatabase//backend//public//file.xls',
+                file.data, err => {
+                if (err) {
+                  console.error(err);
+                }
+            });
 
-            const fc = spawn('python', 
-            ['../../cleaning_script/cap_main.py']);
+            const fc = spawn('sudo', 
+            ['python3', 'cleaning_script/cap_main.py', 'file.xls', district, year]);
+
+
+	    const key = 'FY__'
+	    
+	    await req.app.locals.redisClient.del(key + district.replaceAll(' ', ''));
+
 
             let output;
 
-            // fc.stdin.on();
+	    let status;
 
-            fc.stdout.on("data", (data) => {
-                output += data.toString();
-            });
-            fc.on("close", () => {                     // this differs 
-                console.log(output);
-                res.sendStatus(200);
+
+            fc.stdout.on('data', (data) => {
+                //console.log(`Stdout: ${data}`);
+		output += `Output log: ${data}\n`;
             });
 
+	    fc.stderr.on('data', (data) => {
+		//console.log(`Stderr: ${data}`)
+		output += `Error: ${data}\n`;
+		status = 'Failed';
+
+	    });
+
+            fc.on("close", () => {
+		if (status != 'Failed') {
+		    status = 'Success';
+		}
+		res.json({output: output, status:status});
+            });
+	
         }
         catch(e) {
-            console.log(e)
-            next();
+           console.log(e)
+           next();
         }
-    // }
+    // 
 });
 
 module.exports = router;

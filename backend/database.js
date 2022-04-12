@@ -11,7 +11,7 @@ const { auth, driver } = require('./../node_modules/neo4j-driver');
     static createDriver() {
         return driver(
             'neo4j://localhost:7687',
-            auth.basic('byron', 'newpassword'),
+            auth.basic('neo4j', 'h6u4%kr'),
             {
                 disableLosslessIntegers: true,
             }

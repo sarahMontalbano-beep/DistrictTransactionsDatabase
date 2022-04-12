@@ -6,7 +6,8 @@ from pathlib import Path
 
 # formatting input file as dataframe
 df = pd.DataFrame
-
+in_path = '//home//apf-admin//DistrictTransactionsDatabase//backend//public//'
+out_path = '//var//lib//neo4j//import//'
 
 # step 1: remove text above column headers and standardizing column headers
 def headers(df):
@@ -114,6 +115,8 @@ def accountNum(df, district, fiscalYear):
         fy_col = df["Fiscal_Year"].__len__()
         if fy_col == 0:
             df["Fiscal_Year"].ffill(fiscalYear)
+        elif len(str(df["Fiscal_Year"][0])) < 2:
+            df["Fiscal_Year"] = fiscalYear
 
         codelen = df["Object_Code"].__len__()
         if codelen > 3:
@@ -126,9 +129,9 @@ def accountNum(df, district, fiscalYear):
 # reading in excel file and running cleaning functions.
 def cleaner(file_name, district, year):
     print("Current working directory: {0}".format(os.getcwd()))
-    file_path = Path('C:\\Users\\eBay User\\Documents\\CLASSES\\CSCI483\\DistrictTransactionsDatabase\\backend\\public\\')
+    file_path = Path(in_path)
     # location of primary test DB
-    output_path = Path('C:\\Users\\eBay User\\Documents\\CLASSES\\CSCI483\\DistrictTransactionsDatabase\\backend\\public\\output_file.csv')
+    output_path = Path(out_path + 'output_file.csv')
     if os.getcwd() == file_path:
         print("Already there!")
         imported = pd.read_excel(file_name)

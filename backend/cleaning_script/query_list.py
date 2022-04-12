@@ -2,7 +2,7 @@
 from neo4j import GraphDatabase
 import district_queries
 
-db = GraphDatabase.driver(uri="bolt://localhost:11003", auth=('byron', 'newpassword'))
+db = GraphDatabase.driver(uri="neo4j://localhost:7687", auth=('neo4j', 'h6u4%kr'))
 session = db.session()
 
 districts = ["Alaska Gateway School District",
