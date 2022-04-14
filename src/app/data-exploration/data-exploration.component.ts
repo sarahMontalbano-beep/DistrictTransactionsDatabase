@@ -16,12 +16,18 @@ export class DataExplorationComponent implements OnInit {
   currentDistrict: number = 0;
   currentYear = '';
 
-  keywords = ['Name', 'Year','Object', 'Amount', 'Fund', 'Vendor', 'Credit', 'Debit'];
+  keywords = ['Account', 'Object', 'Amount', 'Fund', 'Vendor', 'Credit', 'Debit', 'Date', 'Description'];
 
   transactions: any[] = [];
   labels: string[] = [];
   dColumns: string[] = []
   displayedColumns: Map<string, string> = new Map();
+
+  startDate: string | undefined = undefined;
+  endDate: string | undefined = undefined;
+
+  minAmount: number | undefined = undefined;
+  maxAmount: number | undefined = undefined;
 
   constructor(private neo4jService: Neo4jService) { }
 
@@ -40,7 +46,10 @@ export class DataExplorationComponent implements OnInit {
     this.labels = [];
     this.dColumns = []
     this.displayedColumns = new Map();
-    let res = await this.neo4jService.getTransactions(this.currentDistrict, this.currentYear);
+    let query = {district: this.currentDistrict, year:this.currentYear,
+    startDate:this.startDate, endDate:this.endDate, minAmount:this.minAmount,
+    maxAmount:this.maxAmount}
+    let res = await this.neo4jService.getTransactions(query);
     this.formatForTable(res.data);
     // console.log(res);
   }
@@ -60,6 +69,10 @@ export class DataExplorationComponent implements OnInit {
     let name = (this.district)? this.district.District_Name : '';
 
     let res = await this.neo4jService.getFiscalYears(name);
+
+    if (res.data.length > 0) {
+      this.fiscalYears.push('Any');
+    }
 
     res.data.forEach((fy: number) => this.fiscalYears.push(fy.toString()));
 

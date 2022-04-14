@@ -16,7 +16,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list'
 import { MatDividerModule } from '@angular/material/divider';
-import { MatExpansionModule } from '@angular/material/expansion'; 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'
 
 import { AppComponent } from './app.component';
 import { TransactionsTableComponent } from './data-exploration/transactions-table/transactions-table.component';
@@ -64,7 +66,8 @@ import { QueryBoxComponent } from './admin-section/query-box/query-box.component
     MatListModule,
     MatDividerModule,
     MatExpansionModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

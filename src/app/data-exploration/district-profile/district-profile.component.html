@@ -5,11 +5,14 @@
     </section>
 
     <!-- <div class="sect"> -->
-        <h3 class="sect_header">PEAKS</h3>
+        <!-- <span class="sect_header"> -->
+        <p><span class="bold">PEAKS </span>
+        <span class="subtext">(Performance Evaluation for Alaska's Schools)</span></p>
+        <!-- </span> -->
 
         <div class="left_div">
-            <p #toolTip="matTooltip" matTooltip="English Langauge Art">ELA</p>
-            <h4>{{ela_bar_value}}%</h4>
+            <p #toolTip="matTooltip" matTooltip="English Langauge Art" matTooltipPosition="right">ELA <mat-icon class="info">info</mat-icon></p>
+            <h4 #toolTip="matTooltip" matTooltip="Percentage of students proficient" matTooltipPosition="right">{{ela_bar_value}}% <mat-icon class="info">info</mat-icon></h4>
             <mat-progress-bar
                 class="ela_bar"
                 [color]="ela_bar_color"
@@ -20,7 +23,7 @@
 
         <div class="right_div">
             <p>Math</p>
-            <h4>{{math_bar_value}}%</h4>
+            <h4 #toolTip="matTooltip" matTooltip="Percentage of students proficient" matTooltipPosition="left">{{math_bar_value}}% <mat-icon class="info">info</mat-icon></h4>
             <mat-progress-bar
                 class="math_bar"
                 [color]="math_bar_color"

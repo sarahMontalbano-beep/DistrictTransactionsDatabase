@@ -1,34 +1,48 @@
 const router = require('express').Router();
+const database = require('../../database');
 
-// async function getFiscalYears(req, res, district) {
+async function getFiscalYears(req, res, district) {
 
-//     const key = 'FY__'
+    const key = 'FY__'
 
-//     const years = await req.app.locals.redisClient.get(key + district.id.toString());
+    const years = await req.app.locals.redisClient.get(key + district.id.toString());
     
-    // if (years == null) {
-    //     let query = 'MATCH (t:FullTransaction{District_Name:$district})-[:OCCURRED_IN]->(fy) RETURN DISTINCT fy.FiscalYear';
-    //     let tempSesh = Database.createSession();
-    //     const results = await tempSesh.readTransaction(
-    //         tx => tx.run(query, {'district': district.District_Name}));
-    //     const resultsArr = [];
-    //     results.records.forEach(element => {
-    //         resultsArr.push(element._fields[0]);
-    //     });
-    //     tempSesh.close();
-    //     await req.app.locals.redisClient.set(key + district.id.toString(), JSON.stringify(resultsArr));
-    //     return resultsArr;
-    // }
-    // else {
-    //     return JSON.parse(years);
-    // }
+    if (years == null) {
+        let query = 'MATCH (t:FullTransaction{District_Name:$district})-[:OCCURRED_IN]->(fy) RETURN DISTINCT fy.FiscalYear';
+        let tempSesh = database.Database.createSession();
+        const results = await tempSesh.readTransaction(
+            tx => tx.run(query, {'district': district.District_Name}));
+        const resultsArr = [];
+        results.records.forEach(element => {
+            resultsArr.push(element._fields[0]);
+        });
+        tempSesh.close();
+        await req.app.locals.redisClient.set(key + district.id.toString(), JSON.stringify(resultsArr));
+        return resultsArr;
+    }
+    else {
+        return JSON.parse(years);
+    }
 
-// }
+}
+
+async function addHasDataField(req, res, districtList) {
+    console.log(districtList.districts.length);
+    let tempList = [];
+    for (let dist of districtList.districts){
+        let data = await getFiscalYears(req, res, dist);
+        dist.hasData = (data.length == 0);
+        tempList.push(dist);
+        // console.log(dist);
+    }
+
+    return tempList;
+}
 
 router.route('/').get( async (req, res, next) => {
     // let fy = await getFiscalYears(req, res, {id: 243, District_Name:"Alaska Gateway School District"});
     // res.json({results:fy});
-    const districts = await req.app.locals.redisClient.get('districts');
+    let districts = await req.app.locals.redisClient.get('districts');
     
     if (districts == null) {
         const results = await res.locals.neo4jSession.readTransaction(
@@ -40,10 +54,12 @@ router.route('/').get( async (req, res, next) => {
             resultsArr.push(tempDict);
         });
         await req.app.locals.redisClient.set('districts', JSON.stringify({districts: resultsArr}));
-        res.json({data: resultsArr});
+        resultsArr = await addHasDataField(req, res, {districts: resultsArr});
+        res.json({data: {districts:resultsArr}});
     }
     else {
-        res.json({data: JSON.parse(districts)});
+        districts = await addHasDataField(req, res, JSON.parse(districts));
+        res.json({data: {districts:districts}});
     }
 });
 

@@ -13,15 +13,19 @@ export class Neo4jService {
     private authService: AuthService, private localStorageService: LocalStorageService) {}
 
 
-  async getTransactions(district: number, fy: string): Promise<any> {
+  async getTransactions(query:Object): Promise<any> {
 
     let params = new HttpParams();
 
-    params = params.append('district', district);
+    for (const [key, value] of Object.entries(query)) {
+      params = params.append(key, value);
+    }
 
-    params = params.append('year', fy);
+    // params = params.append('district', district);
 
-    let observable = this.httpClient.get('http://apf-districts.westus2.cloudapp.azure.com:5005/api/transactions', { params: params });
+    // params = params.append('year', fy);
+
+    let observable = this.httpClient.get('http://localhost:5005/api/transactions', { params: params });
 
     let values = await lastValueFrom(observable);
 
@@ -31,7 +35,7 @@ export class Neo4jService {
 
   async getDistricts(): Promise<any> {
 
-    let observable = this.httpClient.get('http://apf-districts.westus2.cloudapp.azure.com:5005/api/districts');
+    let observable = this.httpClient.get('http://localhost:5005/api/districts');
 
     let values = await lastValueFrom(observable);
 
@@ -44,7 +48,7 @@ export class Neo4jService {
     if (district != '') {
         let params = new HttpParams().set('district', district);
 
-        let observable = this.httpClient.get('http://apf-districts.westus2.cloudapp.azure.com:5005/api/years/getbydistrict', { params: params });
+        let observable = this.httpClient.get('http://localhost:5005/api/years/getbydistrict', { params: params });
 
         let values = await lastValueFrom(observable);
 
@@ -58,7 +62,7 @@ export class Neo4jService {
 
   async getAllFiscalYears(): Promise<any> {
 
-    let observable = this.httpClient.get('http://apf-districts.westus2.cloudapp.azure.com:5005/api/years/getall');
+    let observable = this.httpClient.get('http://localhost:5005/api/years/getall');
 
     let values = await lastValueFrom(observable);
 
@@ -74,7 +78,7 @@ export class Neo4jService {
 
         let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.localStorageService.storageData.token);
 
-        let observable = this.httpClient.post('http://apf-districts.westus2.cloudapp.azure.com:5005/api/admin/query', {query: query}, {headers: headers});
+        let observable = this.httpClient.post('http://localhost:5005/api/admin/query', {query: query}, {headers: headers});
 
         let values = await lastValueFrom(observable);
 
@@ -97,7 +101,7 @@ export class Neo4jService {
 
         let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.localStorageService.storageData.token);
 
-        let observable = this.httpClient.post('http://apf-districts.westus2.cloudapp.azure.com:5005/api/admin/upload', data, {headers: headers});
+        let observable = this.httpClient.post('http://localhost:5005/api/admin/upload', data, {headers: headers});
 
         let values = await lastValueFrom(observable);
 

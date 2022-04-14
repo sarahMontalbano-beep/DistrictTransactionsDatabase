@@ -1,16 +1,59 @@
 <mat-form-field class="District" appearance="fill">
     <mat-label>School District</mat-label>
-    <mat-select [(value)]="currentDistrict" (selectionChange)="districtUpdate()">
-        <mat-option *ngFor="let sd of districts" [value]="sd.id">{{sd.District_Name}}</mat-option>
+    <mat-select [(value)]="currentDistrict" (selectionChange)="districtUpdate()" required>
+        <mat-option *ngFor="let sd of districts" [value]="sd.id" [ngClass]="{'greyed-out':sd.hasData}">{{sd.District_Name }}{{!sd.hasData?'':' (No data)'}}</mat-option>
     </mat-select>
 </mat-form-field>
 
 <mat-form-field class="Year" appearance="fill">
     <mat-label>Fiscal Year</mat-label>
-    <mat-select [(value)]="currentYear">
+    <mat-select [(value)]="currentYear" [disabled]="this.currentDistrict==0" required>
         <mat-option *ngFor="let fy of fiscalYears" [value]="fy">{{fy}}</mat-option>
     </mat-select>
 </mat-form-field>
+<!-- <mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+        Filters
+        </mat-panel-title>
+        <mat-panel-description>
+        <mat-icon>list</mat-icon>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div> -->
+<mat-form-field class="Year" appearance="fill">
+    <mat-label>Start Date</mat-label>
+    <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+    <mat-datepicker #startPicker>
+    </mat-datepicker>
+</mat-form-field>
+
+<mat-form-field class="Year" appearance="fill">
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker>
+    </mat-datepicker>
+</mat-form-field>
+
+<mat-form-field class="Year" appearance="fill">
+    <mat-label>Min Amount</mat-label>
+    <input matInput type="number" [(ngModel)]="minAmount">
+</mat-form-field>
+
+<mat-form-field class="Year" appearance="fill">
+    <mat-label>Max Amount</mat-label>
+    <input matInput type="number" [(ngModel)]="maxAmount">
+</mat-form-field>
+    <!-- </div>
+
+</mat-expansion-panel> -->
+
+<!-- <br> -->
 
 <button mat-raised-button color="primary" (click)="onUpdateButton()">Update</button>
 

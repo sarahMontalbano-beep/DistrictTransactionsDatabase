@@ -5,6 +5,7 @@
   <a routerLink="/explore"><img src="assets/APF-Edited.png"></a>
   <div class="spacer"></div>
   <div *ngIf="authService.isAuthenticated; else isLogOut">
+    <a class="nav-link" routerLink="/admin">Admin Dashboard</a>
     <a class="nav-link" (click)="authService.removeTokenAndNavigateToExplore()">Logout</a>
   </div>
 

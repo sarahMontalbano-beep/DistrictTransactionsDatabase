@@ -5,3 +5,7 @@
 .Year {
     margin: 20px;
 }
+
+.greyed-out {
+    color: lightgrey;
+}

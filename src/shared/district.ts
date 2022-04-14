@@ -7,4 +7,5 @@ export interface District {
     SchoolNo: number,
     TotalStudents: number,
     id: number
+    hasData: boolean
 }

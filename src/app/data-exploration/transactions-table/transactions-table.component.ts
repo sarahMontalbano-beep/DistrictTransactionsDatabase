@@ -45,11 +45,18 @@ export class TransactionsTableComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.dataSource.data = changes['transactions'].currentValue;
+    let tmpList = changes['transactions'].currentValue;
+    tmpList = this.dateObjectsToString(tmpList);
+    this.dataSource.data = tmpList;
   }
 
   pagerEvent(event: PageEvent): void {
     console.log(event);
+  }
+
+  dateObjectsToString(list: any[]) {
+    list.forEach(o => o.Date = `${o.Date.month}-${o.Date.day}-${o.Date.year}`);
+    return list;
   }
 
 }

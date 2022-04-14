@@ -10,7 +10,7 @@ export class LoginService {
     constructor(private http: HttpClient) { }
 
     async login(username: string, password: string): Promise<any> {
-        let observable = this.http.post('http://apf-districts.westus2.cloudapp.azure.com:5005/api/users/login', {username: username, password: password});
+        let observable = this.http.post('http://localhost:5005/api/users/login', {username: username, password: password});
 
         let values = await lastValueFrom(observable);
 
