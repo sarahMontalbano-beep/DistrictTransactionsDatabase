@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { NumberOrInteger } from 'neo4j-driver-core';
 
 @Component({
   selector: 'app-data-visualizations',
@@ -21,12 +22,12 @@ export class DataVisualizationsComponent implements OnInit {
     if ('transactions' in changes && changes['transactions'].currentValue) {
       this.transactions = changes['transactions'].currentValue;
       // if (this.transactions.length > 0 && this.transactions[0].hasOwnProperty("Object_Code")) {
-        this.formatForPieChart(changes['transactions'].currentValue);
+        this.sortByObjectCode(changes['transactions'].currentValue);
       // }
     }
   }
 
-  formatForPieChart(transactions: any[]) {
+  sortByObjectCode(transactions: any[]) {
     if (transactions.length > 0) {
       let tempMap: Map<string, number> = new Map()
 
@@ -66,8 +67,38 @@ export class DataVisualizationsComponent implements OnInit {
           tempArr.push({name: keys[k], value: tempMap.get(keys[k])});
         }
       }
+      tempArr = this.doExraFormatting(tempArr);
       this.objectCodeData = [...tempArr]
     }
   }
 
+  doExraFormatting(data: any[]): any[] {
+    if (data.length > 7) {
+      let tempArr = []
+      data.sort(function(a, b){
+        if (a.value < b.value) {
+          return 1;
+        }
+        if (a.value > b.value) {
+          return -1;
+        }
+        return 0;
+      });
+      let counter = 1;
+      let other = 0;
+      for (const d of data) {
+        if (counter <= 7) {
+          tempArr.push(d);
+        }
+        else {
+          other += d.value;
+        }
+        counter += 1;
+      }
+      tempArr.push({name:"Other", value:other});
+      return tempArr;
+    }
+    return data;
+  }
+  
 }

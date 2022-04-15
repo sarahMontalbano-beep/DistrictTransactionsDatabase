@@ -1,19 +1,9 @@
-<!-- <div *ngIf="transactions">
-    <table>
-        <thead>
-            <tr>
-                <th *ngFor="let label of labels">{{ label}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let transaction of transactions">
-                <td *ngFor="let prop of transaction">{{ prop }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
+<div [ngClass]="{'hide':transactions.length==0}">
+    <mat-form-field class="search" appearance="fill">
+        <mat-label><mat-icon>search</mat-icon>Search Table</mat-label>
+        <input matInput type="text" [(ngModel)]="searchValue" #search>
+    </mat-form-field>
 
-<div *ngIf="transactions">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         
         <ng-container *ngFor="let lCol of labels" matColumnDef={{lCol}}>
@@ -28,9 +18,9 @@
         <tr mat-row *matRowDef="let row; columns: dColumns;"></tr>
     </table>
     <mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pagerEvent($event)"
-               aria-label="Select page">
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="pagerEvent($event)"
+            aria-label="Select page" >
     </mat-paginator>
 </div>

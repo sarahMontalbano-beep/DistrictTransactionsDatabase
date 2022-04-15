@@ -5,3 +5,11 @@ table {
 tr {
     width: 1%;
 }
+
+.hide {
+  visibility: hidden;
+}
+
+.search {
+  width: 100%;
+}

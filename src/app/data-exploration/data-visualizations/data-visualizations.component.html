@@ -1,4 +1,4 @@
-<div *ngIf="(transactions.length > 0)">
+<div [ngClass]="{'hide':objectCodeData.length==0}">
 
     <ngx-charts-pie-chart 
         [results]="objectCodeData"
