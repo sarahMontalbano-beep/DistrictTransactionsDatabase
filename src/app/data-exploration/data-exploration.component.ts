@@ -76,6 +76,8 @@ export class DataExplorationComponent implements OnInit {
 
     res.data.forEach((fy: number) => this.fiscalYears.push(fy.toString()));
 
+    this.fiscalYears.sort();
+
   }
 
   districtUpdate(): void {

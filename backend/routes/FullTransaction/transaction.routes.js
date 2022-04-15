@@ -57,12 +57,12 @@ router.route('/').get( async (req, res, next) => {
             query += 'AND (t.Credit <= $maxAmount OR t.Debit <= $maxAmount OR t.Amount <= $maxAmount) '
         }
 
-        query += "RETURN t LIMIT 51"
+        query += "RETURN t LIMIT 5001"
 
         let params = {'id': districtId, 'fy': fyParsed, 'startDate': parsedStartDate,
         'endDate':parsedEndDate, 'minAmount': minAmount, 'maxAmount': maxAmount}
 
-        console.log(query);
+        // console.log(query);
 
         if (flag == false) {
             // console.log(fyParsed);

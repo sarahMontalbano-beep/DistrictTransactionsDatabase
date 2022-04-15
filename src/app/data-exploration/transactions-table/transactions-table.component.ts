@@ -78,7 +78,9 @@ export class TransactionsTableComponent implements OnInit {
   }
 
   dateObjectsToString(list: any[]) {
-    list.forEach(o => o.Date = `${o.Date.month}-${o.Date.day}-${o.Date.year}`);
+    if (list.length > 0  && list[0].hasOwnProperty('Date')) {
+      list.forEach(o => o.Date = `${o.Date.month}-${o.Date.day}-${o.Date.year}`);
+    }
     return list;
   }
 
