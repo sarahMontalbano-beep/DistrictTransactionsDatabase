@@ -1,8 +1,13 @@
 <div [ngClass]="{'hide':objectCodeData.length==0}">
+    
+    <div class="spending">
+        <h3>Total estimated spending: {{totalSpending}}</h3>
+    </div>
 
     <ngx-charts-pie-chart 
         [results]="objectCodeData"
         [legend]="true"
+        [legendPosition]="below"
         [legendTitle]="'Expenditures by Object Code'" 
         [view]="[1000,300]"
         [labels]="true" >

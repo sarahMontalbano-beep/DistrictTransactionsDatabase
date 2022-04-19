@@ -60,6 +60,9 @@ app.use('/api/users', uRoutes);
 const aRoutes = require("./routes/Admin/admin.routes");
 app.use('/api/admin', aRoutes);
 
+const oRoutes = require("./routes/ObjectCode/object-code.routes");
+app.use('/api/object-code', oRoutes);
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });

@@ -23,6 +23,8 @@ export class DataExplorationComponent implements OnInit {
   dColumns: string[] = []
   displayedColumns: Map<string, string> = new Map();
 
+  objectCodeData: Object[] = []
+
   startDate: string | undefined = undefined;
   endDate: string | undefined = undefined;
 
@@ -39,6 +41,7 @@ export class DataExplorationComponent implements OnInit {
 
   onUpdateButton(): void {
     this.getTransactions();
+    this.getObjectCodeData();
   }
 
   async getTransactions(): Promise<void> {
@@ -131,6 +134,14 @@ export class DataExplorationComponent implements OnInit {
     this.labels = tempLabels
     this.dColumns = tempDColumns
     this.displayedColumns = tempDisplayedColumns
+  }
+
+  async getObjectCodeData() {
+    let res = await this.neo4jService.getObjectCodeData(this.currentDistrict, this.currentYear);
+
+    if (res.data.length > 0) {
+      this.objectCodeData = res.data
+    }
   }
 
 }

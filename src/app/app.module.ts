@@ -31,6 +31,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AdminSectionComponent } from './admin-section/admin-section.component';
 import { DataUploadComponent } from './admin-section/data-upload/data-upload.component';
 import { QueryBoxComponent } from './admin-section/query-box/query-box.component';
+import { ComparePanelComponent } from './data-exploration/compare-panel/compare-panel.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { QueryBoxComponent } from './admin-section/query-box/query-box.component
     UnauthorizedComponent,
     AdminSectionComponent,
     DataUploadComponent,
-    QueryBoxComponent
+    QueryBoxComponent,
+    ComparePanelComponent
   ],
   imports: [
     BrowserModule,

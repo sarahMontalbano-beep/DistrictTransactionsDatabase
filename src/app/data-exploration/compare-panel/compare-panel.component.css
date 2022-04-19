@@ -1,0 +1,15 @@
+.window {
+    width: 100%;
+}
+
+.District {
+    margin: 20px;
+}
+
+.Year {
+    margin: 20px;
+}
+
+.greyed-out {
+    color: lightgrey;
+}

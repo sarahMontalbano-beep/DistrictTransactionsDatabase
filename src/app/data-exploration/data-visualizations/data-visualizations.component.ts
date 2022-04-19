@@ -1,5 +1,7 @@
+import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { NumberOrInteger } from 'neo4j-driver-core';
+import {LegendPosition} from "@swimlane/ngx-charts";
+import { objectCodes } from 'src/shared/object_codes';
 
 @Component({
   selector: 'app-data-visualizations',
@@ -8,12 +10,19 @@ import { NumberOrInteger } from 'neo4j-driver-core';
 })
 export class DataVisualizationsComponent implements OnInit {
 
+  totalSpending: number = 0
+
+  formatter: any = null;
+
   @Input() transactions: Object[] = []
 
-  objectCodeData: Object[] = []
+  @Input() objectCodeData: Object[] = []
   oDataIndexes: any = {}
+  below = LegendPosition.Below
 
-  constructor() { }
+  constructor() {
+    this.formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+   }
 
   ngOnInit(): void {
   }
@@ -24,6 +33,15 @@ export class DataVisualizationsComponent implements OnInit {
       // if (this.transactions.length > 0 && this.transactions[0].hasOwnProperty("Object_Code")) {
         this.sortByObjectCode(changes['transactions'].currentValue);
       // }
+    }
+    if ('objectCodeData' in changes && changes['objectCodeData'].currentValue) {
+      this.totalSpending = 0;
+      let tempArr = this.doExraFormatting(changes['objectCodeData'].currentValue)
+      this.objectCodeData = [...tempArr]
+      
+      // this.totalSpending = Math.round((this.totalSpending + Number.EPSILON) * 100) / 100
+      this.totalSpending = this.formatter.format(this.totalSpending)
+
     }
   }
 
@@ -88,10 +106,13 @@ export class DataVisualizationsComponent implements OnInit {
       let other = 0;
       for (const d of data) {
         if (counter <= 7) {
-          tempArr.push(d);
+          let name = (objectCodes as any)[d.name] ?? d.name;
+          tempArr.push({name:name, value:d.value});
+          this.totalSpending += d.value;
         }
         else {
           other += d.value;
+          this.totalSpending += d.value;
         }
         counter += 1;
       }

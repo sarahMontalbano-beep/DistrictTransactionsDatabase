@@ -2,8 +2,15 @@ ngx-charts-pie-chart {
     display: block;
     width: 100%;
     float: left;
+    margin-bottom: 50px;
 }
 
 .hide {
     visibility: hidden;
+}
+
+.spending {
+    width: 100%;
+    float: left;
+    display: block;
 }
