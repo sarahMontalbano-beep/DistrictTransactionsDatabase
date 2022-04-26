@@ -108,7 +108,7 @@ def ocNodes():
 def fyNodes():
     result = '''
              MATCH (f:Fiscal_Year),(t:FullTransaction)
-             WHERE EXISTS (f.Fiscal_Year) AND EXISTS (t.Fiscal_Year) AND f.Fiscal_Year=t.Fiscal_Year
+             WHERE EXISTS (f.FiscalYear) AND EXISTS (t.Fiscal_Year) AND f.Fiscal_Year=t.Fiscal_Year
              MERGE (t)-[:OCCURED_IN]->(f);
              '''
     return result
