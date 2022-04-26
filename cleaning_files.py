@@ -1,5 +1,5 @@
 # Author: Brian Jore; 01/25/2022
-# Script for cleaning csv files.
+# Script for cleaning excel files.
 import pandas as pd
 import os
 from pathlib import Path
